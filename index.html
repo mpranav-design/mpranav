@@ -510,7 +510,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 .hw-txt .dw-note{margin:10px 0 0;font:500 12px/1.5 'JetBrains Mono',monospace;color:var(--muted)}
 .pf .dw-go{color:#fff}
 /* 01: an x ray lens finds what was meant */
-.xr{position:relative;width:min(340px,100%);min-height:170px;--x:50%;--y:50%;--r:0px;outline:none;cursor:none;-webkit-tap-highlight-color:transparent}
+.xr{position:relative;width:min(340px,100%);min-height:170px;--x:50%;--y:50%;--r:0px;outline:none;cursor:crosshair;-webkit-tap-highlight-color:transparent}
 .xr:focus-visible{outline:2px solid var(--primary);outline-offset:6px;border-radius:12px}
 .xr-ask,.xr-real{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:18px 20px;border-radius:16px;text-wrap:balance}
 .xr-ask{background:var(--surface);box-shadow:inset 0 0 0 1px var(--outline);font-weight:600;font-size:21px;line-height:1.25;letter-spacing:-.015em;color:var(--ink)}
@@ -1072,9 +1072,6 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 }
 
 /* ================= cursor: a dot that becomes a pen tool node over anything you can act on ================= */
-.cc,.cc *{cursor:none !important}
-.cc input,.cc textarea{cursor:text !important}
-.cc input[type="range"]{cursor:none !important}
 #fx{position:fixed !important;inset:0 !important;width:100vw;height:100vh;z-index:400;pointer-events:none}
 .cur{position:fixed !important;left:0 !important;top:0 !important;z-index:401;pointer-events:none;display:none}
 .cc .cur{display:block}
@@ -1432,18 +1429,128 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 @media (max-width:860px){.cf-title{min-height:4.8em}.cf-top{grid-template-rows:68px auto}}
 
 /* r38 content text floor: 13px desktop, 12px phones */
-#sp .bub,.ag-t,.ag-who,.bf-after,.bp-key,.bt-line,.btn-p .du,.cf .cf-tags span,.cf-bs .cf-tags span,.cf-es .cf-tags span,.cf-k,.cf-meta,.cf-role,.cf-sa .cf-tags span,.cf-tags span,.cf-top .cf-meta,.cfm-k,.cfm-list li,.ct-meta span,.cv-hint,.cv-meta,.cv-step,.ft-k,.ft-now b,.ft-v code,.gov-tag,.hud,.hw-n em,.hw-txt .dw-note,.hw-txt .hw-cred,.hx-gap span,.ic .tip,.if-tag,.it-ask,.it-k,.it-k em,.iv-prog em,.iv-src,.lab-list button i,.lbl,.msg-go,.nb .s,.nb2,.nv-fin-k,.nv-mid span,.pt-tag,.pw-read,.pw-t span,.rl-st,.sk-ends,.tk-chip,.tk-k,.tk-lb,.tk-read,.tr-key,.tr-s,.vt-copy,.xr-k{font-size:12px !important}
-@media (min-width:601px){#sp .bub,.ag-t,.ag-who,.bf-after,.bp-key,.bt-line,.btn-p .du,.cf .cf-tags span,.cf-bs .cf-tags span,.cf-es .cf-tags span,.cf-k,.cf-meta,.cf-role,.cf-sa .cf-tags span,.cf-tags span,.cf-top .cf-meta,.cfm-k,.cfm-list li,.ct-meta span,.cv-hint,.cv-meta,.cv-step,.ft-k,.ft-now b,.ft-v code,.gov-tag,.hud,.hw-n em,.hw-txt .dw-note,.hw-txt .hw-cred,.hx-gap span,.ic .tip,.if-tag,.it-ask,.it-k,.it-k em,.iv-prog em,.iv-src,.lab-list button i,.lbl,.msg-go,.nb .s,.nb2,.nv-fin-k,.nv-mid span,.pt-tag,.pw-read,.pw-t span,.rl-st,.sk-ends,.tk-chip,.tk-k,.tk-lb,.tk-read,.tr-key,.tr-s,.vt-copy,.xr-k{font-size:13px !important}}
+#sp .bub,.ag-t,.ag-who,.bf-after,.bp-key,.btn-p .du,.cf .cf-tags span,.cf-bs .cf-tags span,.cf-es .cf-tags span,.cf-k,.cf-meta,.cf-role,.cf-sa .cf-tags span,.cf-tags span,.cf-top .cf-meta,.cfm-k,.cfm-list li,.ct-meta span,.cv-hint,.cv-meta,.cv-step,.ft-k,.ft-now b,.ft-v code,.gov-tag,.hud,.hw-n em,.hw-txt .dw-note,.hw-txt .hw-cred,.hx-gap span,.ic .tip,.if-tag,.it-ask,.it-k,.it-k em,.iv-prog em,.iv-src,.lab-list button i,.lbl,.msg-go,.nb .s,.nb2,.nv-fin-k,.nv-mid span,.pt-tag,.pw-read,.pw-t span,.rl-st,.sk-ends,.tk-chip,.tk-k,.tk-lb,.tk-read,.tr-key,.tr-s,.vt-copy,.xr-k{font-size:12px !important}
+@media (min-width:601px){#sp .bub,.ag-t,.ag-who,.bf-after,.bp-key,.btn-p .du,.cf .cf-tags span,.cf-bs .cf-tags span,.cf-es .cf-tags span,.cf-k,.cf-meta,.cf-role,.cf-sa .cf-tags span,.cf-tags span,.cf-top .cf-meta,.cfm-k,.cfm-list li,.ct-meta span,.cv-hint,.cv-meta,.cv-step,.ft-k,.ft-now b,.ft-v code,.gov-tag,.hud,.hw-n em,.hw-txt .dw-note,.hw-txt .hw-cred,.hx-gap span,.ic .tip,.if-tag,.it-ask,.it-k,.it-k em,.iv-prog em,.iv-src,.lab-list button i,.lbl,.msg-go,.nb .s,.nb2,.nv-fin-k,.nv-mid span,.pt-tag,.pw-read,.pw-t span,.rl-st,.sk-ends,.tk-chip,.tk-k,.tk-lb,.tk-read,.tr-key,.tr-s,.vt-copy,.xr-k{font-size:13px !important}}
 .tp{display:none}
 @media (pointer:coarse){.ck{display:none}.tp{display:inline}}
 @media (max-width:600px){.dk{display:none}}
+
+/* r42 loader text: short and larger */
+.bt-hint{font-size:clamp(20px,2.2vw,26px) !important;line-height:1.3;max-width:none;margin:-6px 0 0}
+.bt-line{font-size:clamp(17px,1.8vw,22px) !important;line-height:1.7;letter-spacing:.05em}
+.bt-c{gap:32px}
+
+/* r43 contact is an icon in the header */
+.hd-nav a.hd-mail{width:40px;height:40px;padding:0;display:inline-grid;place-items:center;margin-left:2px}
+.hd-nav a.hd-mail svg{width:18px;height:18px;display:block}
+.hd-nav a.hd-mail::after{bottom:4px}
+
+/* r43 card fronts: the number block sits closer to the meta line and the title */
+@media (min-width:601px){
+.cf-face{min-height:0}
+.cf-v{font-size:16px;line-height:1.45;margin:0 0 14px}
+.cf-v.last{margin-bottom:16px}
+.cf-ul li{margin:0 0 6px}
+.cf-role{margin:0 0 14px}
+}
+
+/* r44 tour highlights that stand in for hover, and a pulse for the buttons the tour points at */
+@keyframes thpulse{0%,100%{box-shadow:0 0 0 0 rgba(11,87,208,.55)}50%{box-shadow:0 0 0 10px rgba(11,87,208,0)}}
+body[data-th="btn"] #cf-es .cf-front .cf-num{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1.5px #fff}
+body[data-th="btn"] #cf-es .cf-front .cf-num::before{opacity:.5;transform:scale(1.06)}
+body[data-th="num"] .it-num,body[data-th="a11y"] .ax-b{animation:thpulse 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){body[data-th="num"] .it-num,body[data-th="a11y"] .ax-b{animation:none;outline:3px solid var(--primary);outline-offset:3px}}
+
+/* r44 phone Nav: a labelled dock that pushes the page up, never hides it */
+@media (max-width:600px){
+.pf{padding-bottom:calc(var(--nvh,44px) + 44px + env(safe-area-inset-bottom,0px))}
+.nv{width:min(236px,calc(100vw - 32px))}
+.nv:not(.w1):not(.w2):not(.w3):not(.w4):not(.w5) .nv-mid span{display:block !important}
+.nv:not(.w1):not(.w2):not(.w3):not(.w4):not(.w5) .nv-bar::after{content:"";flex:none;width:9px;height:9px;margin:0 16px 0 2px;border-top:2px solid #fff;border-left:2px solid #fff;transform:translateY(2px) rotate(45deg);opacity:.8}
+.nv-mid{cursor:pointer}
+.nv-eyes{height:40px}
+.nv-say{font-size:16px}
+}
+
+
+/* r46 belief four: the wall is repainted again and again, the pipes behind it keep running */
+.wlp{position:relative;width:100%;max-width:440px}
+.wlp svg{display:block;width:100%;height:auto;overflow:visible}
+.wl-base{fill:#F1F3F4}
+.wl-edge{fill:none;stroke:var(--ink);stroke-width:1.5}
+.wl-coat{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);animation:none}
+.wl-p{fill:none;stroke:#0B57D0;stroke-opacity:.4;stroke-width:5;stroke-linecap:round}
+.wl-flow{stroke-opacity:.95;stroke-width:2.2;stroke-dasharray:8 46;animation:iff 3.3s linear infinite}
+.wl-j{fill:#fff;stroke:#0B57D0;stroke-width:1.6}
+.wl-pl{font:600 9.5px 'JetBrains Mono',monospace;fill:#0842A0}
+.wl-cap{font:600 9px 'JetBrains Mono',monospace;fill:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.wl-rd{font:600 9.5px 'JetBrains Mono',monospace;fill:var(--ink);opacity:0;letter-spacing:.04em;text-transform:uppercase}
+.wl-roller{opacity:0;transform:translateX(12px);animation:wlroll 11.0s linear infinite}
+.wl-roller rect{fill:var(--ink)}
+.wl-c0{animation:wlc0 11.0s linear infinite}.wl-c1{animation:wlc1 11.0s linear infinite}.wl-c2{animation:wlc2 11.0s linear infinite}.wl-c3{animation:wlc3 11.0s linear infinite}
+.wl-r0{animation:wlr0 11.0s linear infinite}.wl-r1{animation:wlr1 11.0s linear infinite}.wl-r2{animation:wlr2 11.0s linear infinite}.wl-r3{animation:wlr3 11.0s linear infinite}
+@keyframes wlc0{0%,0%{transform:scaleX(0);opacity:1}9%,95%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes wlr0{0%,23%{opacity:1}25%,98%{opacity:0}100%{opacity:1}}
+@keyframes wlc1{0%,25%{transform:scaleX(0);opacity:1}34%,95%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes wlr1{0%,24.99%{opacity:0}27%,48%{opacity:1}50%{opacity:0}100%{opacity:0}}
+@keyframes wlc2{0%,50%{transform:scaleX(0);opacity:1}59%,95%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes wlr2{0%,49.99%{opacity:0}52%,73%{opacity:1}75%{opacity:0}100%{opacity:0}}
+@keyframes wlc3{0%,75%{transform:scaleX(0);opacity:1}84%,95%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes wlr3{0%,74.99%{opacity:0}77%,98%{opacity:1}100%{opacity:0}100%{opacity:0}}
+@keyframes wlroll{0%{transform:translateX(12px);opacity:1}9%{transform:translateX(348px);opacity:1}9.6%{transform:translateX(348px);opacity:0}24.9%{transform:translateX(12px);opacity:0}25%{transform:translateX(12px);opacity:1}34%{transform:translateX(348px);opacity:1}34.6%{transform:translateX(348px);opacity:0}49.9%{transform:translateX(12px);opacity:0}50%{transform:translateX(12px);opacity:1}59%{transform:translateX(348px);opacity:1}59.6%{transform:translateX(348px);opacity:0}74.9%{transform:translateX(12px);opacity:0}75%{transform:translateX(12px);opacity:1}84%{transform:translateX(348px);opacity:1}84.6%{transform:translateX(348px);opacity:0}100%{transform:translateX(348px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.wlp *{animation:none !important}.wl-c3{transform:scaleX(1)}.wl-r3{opacity:1}.wl-roller{display:none}}
+
+/* r47 the real numbers button: black label on hover, and a quiet line under the walkthrough button */
+.it-usd .it-ask.it-num:hover,.it-usd .it-ask.it-num:focus-visible{background:var(--mark);color:var(--ink)}
+.vt-hint{margin:-6px 0 0;text-align:center;font:italic 400 15px/1.4 'Libre Baskerville',Georgia,serif;color:#C62828}
+
+/* r48 pointer: your own cursor always stays. A ring and a small verb label keep it company. */
+.cur{--cs:1}
+.cur .ch{display:none}
+.cur .cn{left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:transparent;border:2px solid var(--ink);box-shadow:0 0 0 2px #fff,inset 0 0 0 2px #fff;transform:scale(var(--cs))}
+.cur.hov .cn{left:-17px;top:-17px;width:34px;height:34px;border-radius:50%;background:transparent;border-color:var(--primary);box-shadow:0 0 0 2px #fff,inset 0 0 0 2px #fff}
+.cur.down .cn{transform:scale(calc(var(--cs) * .82))}
+.cur .cp{position:absolute;left:26px;top:24px;display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 8px;border-radius:999px;background:var(--ink);color:#fff;font:600 13px/1.2 'Inter','Helvetica Neue',Arial,sans-serif;letter-spacing:0;white-space:nowrap;box-shadow:0 0 0 2px #fff,0 4px 14px rgba(0,0,0,.28);opacity:0;visibility:hidden;transform:translateY(4px) scale(.96);transition:opacity .15s,transform .18s var(--e-std),visibility 0s linear .15s}
+.cur.hov.hasv .cp{opacity:1;visibility:visible;transform:none;transition:opacity .15s,transform .18s var(--e-std),visibility 0s}
+.cur .cp svg{display:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cur .cp[data-k="open"] .i-open,.cur .cp[data-k="flip"] .i-flip,.cur .cp[data-k="ask"] .i-ask,.cur .cp[data-k="copy"] .i-copy,.cur .cp[data-k="zoom"] .i-zoom,.cur .cp[data-k="drag"] .i-drag,.cur .cp[data-k="play"] .i-play,.cur .cp[data-k="expand"] .i-expand,.cur .cp[data-k="mail"] .i-mail,.cur .cp[data-k="eye"] .i-eye,.cur .cp[data-k="block"] .i-block{display:block}
+.cur.fl .cp{left:auto;right:26px}
+.cur.fb .cp{top:auto;bottom:24px}
+.pf.lgcur .cur{--cs:1.5}
+.pf.lgcur .cur .cp{left:36px;top:34px;padding:7px 14px 7px 10px;font-size:16px;gap:8px}
+.pf.lgcur .cur .cp svg{width:18px;height:18px}
+.pf.lgcur .cur.fl .cp{left:auto;right:36px}
+.pf.lgcur .cur.fb .cp{top:auto;bottom:34px}
+.pf.glove,.pf.glove *{cursor:none !important}
+.pf.still .cur *{transition:none !important}
+@media (prefers-reduced-motion:reduce){.cur *{transition:none !important}}
+@media (forced-colors:active){.cur{display:none !important}.pf.glove,.pf.glove *{cursor:auto !important}}
+@media (hover:none),(max-width:600px){.ax-ptr{display:none}}
+
+/* r49 phone cards: every card is the same height. Both faces share one cell, so the tallest face sets it for all. */
+@media (max-width:860px){
+.cf-grid{align-items:stretch}
+.cf{display:flex}
+.cf-in{flex:1 1 auto;width:100%;height:auto}
+.cf-more{align-content:center;justify-items:start}
+}
+@media (max-width:600px){
+.cf:not(.flip) .cf-back,.cf.flip .cf-front{position:relative;inset:auto}
+.cf-front .cf-fig{margin-top:auto;padding-top:22px}
+.cf-front .cf-foot{margin-top:18px}
+.cf-back .cf-v{font-size:14.5px;line-height:1.42;margin-bottom:10px}
+.cf-back .cf-v.last{margin-bottom:12px}
+.cf-back .cf-ul li{margin-bottom:5px}
+.cf-back .cf-role{margin:0 0 12px;padding-top:10px}
+.cf-back .cf-acts{gap:6px 8px}
+}
 </style>
 </helmet>
 
 <div class="pf" id="pf">
   <a class="skip" href="#main">Skip to content</a>
   <canvas id="fx" aria-hidden="true"></canvas>
-  <div class="cur" id="cur" aria-hidden="true"><i class="ch l"></i><i class="ch r"></i><i class="cn" style="font-size: 18px"></i></div>
+  <div class="cur" id="cur" aria-hidden="true"><i class="ch l"></i><i class="ch r"></i><i class="cn" style="font-size: 18px"></i><span class="cp" data-k=""><svg class="i i-open" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"></path></svg><svg class="i i-flip" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6a5 5 0 0 1 9-1.5M13 10a5 5 0 0 1-9 1.5M12 2v3h-3M4 14v-3h3"></path></svg><svg class="i i-ask" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10v7H8l-3 3v-3H3z"></path></svg><svg class="i i-copy" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5h8v8H5zM3 11V3h8"></path></svg><svg class="i i-zoom" viewBox="0 0 16 16" aria-hidden="true"><path d="M7 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM10 10l4 4M7 5v4M5 7h4"></path></svg><svg class="i i-drag" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12M8 2l-2 2M8 2l2 2M8 14l-2-2M8 14l2-2M2 8l2-2M2 8l2 2M14 8l-2-2M14 8l-2 2"></path></svg><svg class="i i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z"></path></svg><svg class="i i-expand" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4"></path></svg><svg class="i i-mail" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12v8H2zM2 5l6 4 6-4"></path></svg><svg class="i i-eye" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8s2.5-4 6-4 6 4 6 4-2.5 4-6 4-6-4-6-4zM8 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path></svg><svg class="i i-block" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zM4 4l8 8"></path></svg><b></b></span></div>
   <div class="ha {{haCls}}" id="ha" aria-hidden="true"><i class="gw"></i><i class="rp"></i><i class="rp"></i><i class="rp"></i></div>
 
   <div class="gov {{govCls}}" aria-hidden="true"><div class="gov-in"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="gov-tag">12 columns · 24 gutter · 1360 max</span></div>
@@ -1451,9 +1558,9 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
   <div class="bt {{btCls}}" id="bt" onClick="{{skipBoot}}" aria-hidden="true">
     <div class="bt-c">
       <div class="bt-eyes" id="bt-eyes"><span class="bt-eye"><i></i></span><span class="bt-eye"><i></i></span></div>
-      <p class="bt-hint">Psst. This page hides a few details. <b>Best explored on a desktop.</b></p>
+      <p class="bt-hint"><b>Best on desktop.</b></p>
       <div class="bt-bar"><i id="bt-bar"></i></div>
-      <p class="bt-line">Waking up Nav <b id="bt-n">0</b>%<br><span class="ck">click</span><span class="tp">tap</span> anywhere to enter with sound</p>
+      <p class="bt-line">Waking Nav <b id="bt-n">0</b>%<br><span class="ck">Click</span><span class="tp">Tap</span> to enter</p>
     </div>
   </div>
 
@@ -1465,7 +1572,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
         <a class="opt2" href="#work" data-sec="Work">Work</a>
         <a class="opt" href="#path" data-sec="Path">Path</a>
         <a class="opt" href="#beliefs" data-sec="Beliefs">Beliefs</a>
-        <a class="opt2" href="#contact" data-sec="Contact">Contact</a>
+        <a class="opt2 hd-mail" href="#contact" data-sec="Contact" aria-label="Contact" title="Contact"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3.8" width="14" height="10.4" rx="2.4"></rect><path d="m2.8 5.4 6.2 4.6 6.2-4.6"></path></svg></a>
         <i class="hd-sep opt2" aria-hidden="true"></i>
         <button class="ax-b {{axSeen}}" aria-expanded="{{axStr}}" aria-haspopup="dialog" onClick="{{axToggle}}" aria-label="Accessibility: sound, motion and Nav settings" data-cur="a11y"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="3.6" r="1.6" fill="currentColor" stroke="none"></circle><path d="M3.5 6.8 9 8l5.5-1.2M9 8v3.6M9 11.6l-2.6 4.6M9 11.6l2.6 4.6"></path></svg><span class="ax-bl">Accessibility</span></button>
       </nav>
@@ -1479,6 +1586,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
     <div class="ax-row"><div><b id="ax-snd">Sound</b><p>Little sound effects play at different moments: a ping, a coin, a whoosh, a rimshot.</p></div><button class="sw {{swSnd}}" role="switch" aria-checked="{{sndStr}}" aria-labelledby="ax-snd" onClick="{{toggleSound}}"><i></i></button></div>
     <div class="ax-row"><div><b id="ax-mo">Motion</b><p>Some parts move on their own so you can take them in quickly. Switch this off if motion makes you dizzy.</p></div><button class="sw {{swMo}}" role="switch" aria-checked="{{moStr}}" aria-labelledby="ax-mo" onClick="{{toggleMotion}}"><i></i></button></div>
     <div class="ax-row"><div><b id="ax-nav">Nav</b><p>Nav’s eyes follow you around the page. If that feels like being stared at, send him off. You can call him back here.</p></div><button class="sw {{swNav}}" role="switch" aria-checked="{{navStr}}" aria-labelledby="ax-nav" onClick="{{toggleNav}}"><i></i></button></div>
+    <div class="ax-row ax-ptr"><div><b id="ax-lg">Large pointer</b><p>A bigger ring and label travel with your mouse, with a thicker outline. Your own cursor always stays visible.</p></div><button class="sw {{swLg}}" role="switch" aria-checked="{{lgStr}}" aria-labelledby="ax-lg" onClick="{{toggleLg}}"><i></i></button></div>
     <p class="ax-sr"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"></path></svg><span>Works with screen readers. Every control is labelled, and nothing on this page depends on sight or sound alone.</span></p>
   </div>
 
@@ -1591,7 +1699,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
           <div class="cf-in">
             <div class="cf-face cf-front">
               <div class="cf-tags"><span>Agentic AI</span><span>Self serve</span><span>In development</span></div>
-              <div class="cf-top"><div class="cf-id"><i class="cf-logo" aria-hidden="true"></i><p class="cf-meta">Enterprise Suite · Deal to cash<br>Staff Designer · design direction</p></div><div class="il il-es" aria-hidden="true"><i></i><i></i><i></i></div></div>
+              <div class="cf-top"><div class="cf-id"><i class="cf-logo" aria-hidden="true"></i><p class="cf-meta">Enterprise Suite · Deal to cash<br>Staff Product Designer · design direction</p></div><div class="il il-es" aria-hidden="true"><i></i><i></i><i></i></div></div>
               <p class="cf-fig"><span class="hl" data-hl="es">5 roles</span></p>
               <p class="cf-figl">touch every deal after signing. The customer sees none of it.</p>
               <h3 class="cf-title">Five roles touch a deal before it becomes revenue. Our team worked on what they share.</h3>
@@ -1608,7 +1716,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
           <div class="cf-in">
             <div class="cf-face cf-front">
               <div class="cf-tags"><span>AI insights</span><span>Exec alignment</span><span>Trust</span></div>
-              <div class="cf-top"><div class="cf-id"><i class="cf-logo" aria-hidden="true"></i><p class="cf-meta">Intuit · Bills &amp; Subscriptions<br>Staff Designer · FY26</p></div><div class="il il-bs" aria-hidden="true"><span class="bub"><i></i><i></i><i></i><i></i><i></i><i></i></span></div></div>
+              <div class="cf-top"><div class="cf-id"><i class="cf-logo" aria-hidden="true"></i><p class="cf-meta">Intuit · Bills &amp; Subscriptions<br>Staff Product Designer · FY26</p></div><div class="il il-bs" aria-hidden="true"><span class="bub"><i></i><i></i><i></i><i></i><i></i><i></i></span></div></div>
               <p class="cf-fig"><span class="hl" data-hl="bs">4 questions</span></p>
               <p class="cf-figl">every customer asks of a bill: what do I owe, why did it change, what am I using, how do I pay?</p>
               <h3 class="cf-title">Billing is where trust is earned or lost. The team set out to make the page explain itself.</h3>
@@ -1675,7 +1783,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
         <p class="sec-sub rv d2"><span class="hl" data-hl="path">An agency, a consultancy, a studio of my own, a marketplace, a platform team.</span> The titles change. The questions stay the same.</p>
       </div>
       <div class="pt">
-        <div class="pt-row rv"><span class="pt-org">Intuit</span><i class="pt-logo l-intuit" aria-hidden="true"></i><span class="pt-role">Staff Designer</span><span class="pt-line">AI lead to quote, Bills &amp; Subscriptions, the partner experience. Platform work that scales to TurboTax, Mailchimp and Credit Karma.</span><span class="pt-tag now">2026 · now</span></div>
+        <div class="pt-row rv"><span class="pt-org">Intuit</span><i class="pt-logo l-intuit" aria-hidden="true"></i><span class="pt-role">Staff Product Designer</span><span class="pt-line">AI lead to quote, Bills &amp; Subscriptions, the partner experience. Platform work that scales to TurboTax, Mailchimp and Credit Karma.</span><span class="pt-tag now">2026 · now</span></div>
         <div class="pt-row rv"><span class="pt-org">Amazon</span><i class="pt-logo l-amazon" aria-hidden="true"></i><span class="pt-role">UX Leader</span><span class="pt-line">Shopping app navigation, the central design system, and four major shopping initiatives.</span><span class="pt-tag">2022 to 2025</span></div>
         <div class="pt-row rv"><span class="pt-org">Beatnik Design Studio</span><i class="pt-logo l-beatnik" aria-hidden="true"></i><span class="pt-role">Cofounder</span><span class="pt-line">A studio of my own: strategy for 10+ CXOs, $2.1M+ in client revenue growth, teams of 13+.</span><span class="pt-tag">2018 to 2023</span></div>
         <div class="pt-row rv"><span class="pt-org">Deloitte</span><i class="pt-logo l-deloitte" aria-hidden="true"></i><span class="pt-role">Sr Consultant</span><span class="pt-line">B2B platforms across 120+ countries, in life sciences, insurance and social innovation.</span><span class="pt-tag">2019 to 2022</span></div>
@@ -1737,11 +1845,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
         </article>
         <article class="hw-c hw-sys rv d1">
           <div class="hw-vis">
-            <div class="ifr {{trCls}}" onMouseEnter="{{trEnter}}" onMouseLeave="{{trLeave}}" aria-hidden="true">
-              <span class="if-tag">{{trSeason}}</span>
-              <svg viewBox="0 0 360 230"><path class="if-r" d="M80 220V130"></path><path class="if-r if-up" style="animation-delay:-0.0s" d="M80 220V130"></path><circle class="if-n" cx="80" cy="166" r="3.2"></circle><circle class="if-n" cx="80" cy="184" r="3.2"></circle><circle class="if-n" cx="80" cy="202" r="3.2"></circle><circle class="if-n" cx="80" cy="220" r="3.2"></circle><path class="if-r" d="M180 220V130"></path><path class="if-r if-up" style="animation-delay:-0.6s" d="M180 220V130"></path><circle class="if-n" cx="180" cy="166" r="3.2"></circle><circle class="if-n" cx="180" cy="184" r="3.2"></circle><circle class="if-n" cx="180" cy="202" r="3.2"></circle><circle class="if-n" cx="180" cy="220" r="3.2"></circle><path class="if-r" d="M280 220V130"></path><path class="if-r if-up" style="animation-delay:-1.2s" d="M280 220V130"></path><circle class="if-n" cx="280" cy="166" r="3.2"></circle><circle class="if-n" cx="280" cy="184" r="3.2"></circle><circle class="if-n" cx="280" cy="202" r="3.2"></circle><circle class="if-n" cx="280" cy="220" r="3.2"></circle><g class="if-scr if-s0" style="transform-origin:80px 130px"><rect class="if-fr" x="40" y="22" width="80" height="108" rx="10"></rect><rect class="if-hd" x="50" y="34" width="60" height="9" rx="4.5"></rect><rect class="if-bd" x="50" y="52" width="60" height="34" rx="6"></rect><rect class="if-ln" x="50" y="94" width="44" height="5" rx="2.5"></rect><rect class="if-ln b" x="50" y="104" width="32" height="5" rx="2.5"></rect><rect class="if-cta" x="86" y="112" width="24" height="10" rx="5"></rect></g><g class="if-scr if-s1" style="transform-origin:180px 130px"><rect class="if-fr" x="140" y="22" width="80" height="108" rx="10"></rect><rect class="if-hd" x="150" y="34" width="60" height="9" rx="4.5"></rect><rect class="if-bd" x="150" y="52" width="60" height="34" rx="6"></rect><rect class="if-ln" x="150" y="94" width="44" height="5" rx="2.5"></rect><rect class="if-ln b" x="150" y="104" width="32" height="5" rx="2.5"></rect><rect class="if-cta" x="186" y="112" width="24" height="10" rx="5"></rect></g><g class="if-scr if-s2" style="transform-origin:280px 130px"><rect class="if-fr" x="240" y="22" width="80" height="108" rx="10"></rect><rect class="if-hd" x="250" y="34" width="60" height="9" rx="4.5"></rect><rect class="if-bd" x="250" y="52" width="60" height="34" rx="6"></rect><rect class="if-ln" x="250" y="94" width="44" height="5" rx="2.5"></rect><rect class="if-ln b" x="250" y="104" width="32" height="5" rx="2.5"></rect><rect class="if-cta" x="286" y="112" width="24" height="10" rx="5"></rect></g><path class="if-g" d="M8 146H352"></path><text class="if-gl" x="352" y="141" text-anchor="end">what people see</text><text class="if-gl" x="352" y="158" text-anchor="end">what decides it</text><path class="if-p" d="M14 166H346"></path><path class="if-p if-flow" style="animation-delay:-0s" d="M14 166H346"></path><text class="if-l" x="90" y="161.5">names</text><path class="if-p" d="M14 184H346"></path><path class="if-p if-flow" style="animation-delay:-0.8s" d="M14 184H346"></path><text class="if-l" x="90" y="179.5">rules</text><path class="if-p" d="M14 202H346"></path><path class="if-p if-flow" style="animation-delay:-1.6s" d="M14 202H346"></path><text class="if-l" x="90" y="197.5">data</text><path class="if-p" d="M14 220H346"></path><path class="if-p if-flow" style="animation-delay:-2.4s" d="M14 220H346"></path><text class="if-l" x="90" y="215.5">permissions</text></svg>
-              <span class="tr-key"><em class="k1"></em>screens: rebuilt every redesign <em class="k2"></em>infrastructure: designed once, still running</span>
-            </div>
+            <div class="wlp" onMouseEnter="{{trEnter}}" onMouseLeave="{{trLeave}}" aria-hidden="true"><svg viewBox="0 0 360 214" role="presentation"><rect class="wl-base" x="12" y="18" width="336" height="150" rx="8"></rect><rect class="wl-coat wl-c0" x="12" y="18" width="336" height="150" rx="8" style="fill:#CFE3FF"></rect><rect class="wl-coat wl-c1" x="12" y="18" width="336" height="150" rx="8" style="fill:#FAD2CF"></rect><rect class="wl-coat wl-c2" x="12" y="18" width="336" height="150" rx="8" style="fill:#CDEBD6"></rect><rect class="wl-coat wl-c3" x="12" y="18" width="336" height="150" rx="8" style="fill:#FFE9A8"></rect><rect class="wl-edge" x="12" y="18" width="336" height="150" rx="8"></rect><path class="wl-p" d="M30 66H330"></path><path class="wl-p wl-flow" style="animation-delay:-0.0s" d="M30 66H330"></path><circle class="wl-j" cx="30" cy="66" r="3.4"></circle><circle class="wl-j" cx="120" cy="66" r="3.4"></circle><circle class="wl-j" cx="210" cy="66" r="3.4"></circle><circle class="wl-j" cx="330" cy="66" r="3.4"></circle><text class="wl-pl" x="38" y="59">names</text><path class="wl-p" d="M30 94H330"></path><path class="wl-p wl-flow" style="animation-delay:-0.8s" d="M30 94H330"></path><circle class="wl-j" cx="30" cy="94" r="3.4"></circle><circle class="wl-j" cx="120" cy="94" r="3.4"></circle><circle class="wl-j" cx="210" cy="94" r="3.4"></circle><circle class="wl-j" cx="330" cy="94" r="3.4"></circle><text class="wl-pl" x="38" y="87">rules</text><path class="wl-p" d="M30 122H330"></path><path class="wl-p wl-flow" style="animation-delay:-1.6s" d="M30 122H330"></path><circle class="wl-j" cx="30" cy="122" r="3.4"></circle><circle class="wl-j" cx="120" cy="122" r="3.4"></circle><circle class="wl-j" cx="210" cy="122" r="3.4"></circle><circle class="wl-j" cx="330" cy="122" r="3.4"></circle><text class="wl-pl" x="38" y="115">data</text><path class="wl-p" d="M30 150H330"></path><path class="wl-p wl-flow" style="animation-delay:-2.4s" d="M30 150H330"></path><circle class="wl-j" cx="30" cy="150" r="3.4"></circle><circle class="wl-j" cx="120" cy="150" r="3.4"></circle><circle class="wl-j" cx="210" cy="150" r="3.4"></circle><circle class="wl-j" cx="330" cy="150" r="3.4"></circle><text class="wl-pl" x="38" y="143">permissions</text><text class="wl-rd wl-r0" x="340" y="34" text-anchor="end">redesign 1</text><text class="wl-rd wl-r1" x="340" y="34" text-anchor="end">redesign 2</text><text class="wl-rd wl-r2" x="340" y="34" text-anchor="end">redesign 3</text><text class="wl-rd wl-r3" x="340" y="34" text-anchor="end">redesign 4</text><g class="wl-roller"><rect x="-4" y="14" width="8" height="158" rx="4"></rect></g><text class="wl-cap" x="12" y="10">what people see: repainted</text><text class="wl-cap" x="12" y="186">what decides it: behind the paint, still running</text></svg><span class="tr-key"><em class="k1"></em>screens: rebuilt every redesign <em class="k2"></em>infrastructure: designed once, still running</span></div>
           </div>
           <div class="hw-txt"><span class="hw-n">04</span><h3 class="hw-h">Design the infrastructure. The screens sit on top.</h3><p class="hw-p">Screens get redesigned every year or two. The names, rules, data and permissions underneath decide what any screen can do, and they outlast every redesign. That is where I spend the most care.</p><p class="hw-cred">A lens I picked up from Vishant Anand, a designer friend.</p></div>
         </article>
@@ -1832,7 +1936,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
         <button class="btn-o" onClick="{{openChat}}" data-cur="ask">Ask Nav</button>
       </div>
       <div class="ct-meta rv d3">
-        <div><span>Now</span><p>Staff Designer, Intuit</p></div>
+        <div><span>Now</span><p>Staff Product Designer, Intuit</p></div>
         <div><span>Before</span><p>Amazon India · Deloitte USI · Beatnik · Frogideas</p></div>
         <div><span>Elsewhere</span><p><a href="https://www.linkedin.com/in/mpranav/" target="_blank" rel="noopener">LinkedIn</a> · mpranav991@gmail.com</p></div>
       </div>
@@ -1875,6 +1979,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
           <canvas class="vb-g" id="vb-g" aria-hidden="true"></canvas>
         </a>
       </div>
+      <p class="vt-hint"><span class="ck">Don't be shy. Come closer.</span><span class="tp">Don't be shy. Reach for it.</span></p>
       <button class="vt-copy" onClick="{{numCopy}}" data-cur="copy">mpranav991@gmail.com <b>{{vtCopyL}}</b></button>
     </div>
   </div>
@@ -1886,7 +1991,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
     <div id="nv-in">
       <div class="nv-bar">
         <button class="nv-eyes {{mood}}" id="nv-eyes" onClick="{{faceClick}}" aria-label="{{faceLabel}}" aria-expanded="{{expandedStr}}" data-cur="poke"><i class="nv-brow l" aria-hidden="true"></i><i class="nv-brow r" aria-hidden="true"></i><span class="nv-eye" aria-hidden="true"><i class="nv-pp"></i></span><span class="nv-eye" aria-hidden="true"><i class="nv-pp"></i></span><span class="nv-zz" aria-hidden="true">z</span></button>
-        <div class="nv-mid"><b>{{barTitle}}</b><span>{{barSub}}</span></div>
+        <div class="nv-mid" onClick="{{faceClick}}"><b>{{barTitle}}</b><span>{{barSub}}</span></div>
         <sc-if value="{{showRing}}" hint-placeholder-val="{{true}}"><svg class="nv-ring" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="10.5" stroke="#2E2E33"></circle><circle id="nv-ringp" cx="14" cy="14" r="10.5" stroke="#FDE293" stroke-linecap="round" stroke-dasharray="66" stroke-dashoffset="66" transform="rotate(-90 14 14)"></circle></svg></sc-if>
         <sc-if value="{{showLiveAsk}}" hint-placeholder-val="{{false}}"><button class="nb2 acc" onClick="{{askHover}}">Ask</button></sc-if>
         <sc-if value="{{showTourX}}" hint-placeholder-val="{{false}}"><button class="nb2" onClick="{{stop}}" aria-label="End the tour"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9"></path></svg></button></sc-if>
@@ -1901,7 +2006,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
         <div class="nv-blk">
           <p class="nv-sugg">{{suggestion}}</p>
           <div class="nv-ctl">
-            <button class="nb2 wt lg" onClick="{{tourStart}}"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 1 8.5 5 1.5 9z" fill="currentColor"></path></svg>60s tour</button>
+            <button class="nb2 wt lg" onClick="{{tourStart}}"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 1 8.5 5 1.5 9z" fill="currentColor"></path></svg>Take the tour</button>
             <button class="nb2 acc lg" onClick="{{openChat}}">Ask Nav</button>
             <a class="nb2 lg" href="mailto:mpranav991@gmail.com" onClick="{{horn}}">Email</a>
           </div>
@@ -1923,7 +2028,7 @@ details.bf[open] .gl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 
       <sc-if value="{{isTour}}" hint-placeholder-val="{{false}}">
         <div class="nv-blk">
-          <div class="nv-segs" aria-hidden="true"><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i></div>
+          <div class="nv-segs" aria-hidden="true"><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i><i><b class="sg"></b></i></div>
           <p class="nv-say" aria-live="polite"><span class="{{caret}}">{{sayText}}</span></p>
           <div class="nv-ctl">
             <button class="nb2 lg" onClick="{{prev}}" aria-label="Previous stop"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4"></path></svg></button>
@@ -1964,22 +2069,32 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = {
-      boot: 'on', mode: 'idle', peek: false, toast: '', toastT: '', hover: null, islHover: false,
+      boot: 'on', lgcur: false, mode: 'idle', peek: false, toast: '', toastT: '', hover: null, islHover: false,
       step: -1, paused: false, min: false, say: '', shown: 0,
       flipped: {}, msgs: [], input: '', typing: false, big: false,
       sound: true, mood: '', sec: 'Intro', grid: false, cvPaused: false, copied: false, nmRolled: false, nmIdx: 0, nmTouched: false, ibOpen: false, ibTouched: false, plIdx: 0, plOpen: false, plTouched: false, nmOn: false, nmA: '', nmCur: 0, p0st: '', p1st: '', p0snap: false, p1snap: false, p0i: 0, p1i: 1, pwK: 0, pwTouched: false, xrIdx: 0, xrOn: false, xrFull: false, xrTouched: false, ivIdx: 0, ivTouched: false, xrAuto: '', rlPh: '', rlDn: false, bpYear: 2019, bpFast: false, skV: 20, skTouched: false, trS: 0, trY: 1, trFast: false, oStep: 'ask', oBigI: 0, ax: false, axSeen: false, vt: '', vtCopied: false, still: false, nonav: false, agStep: -1, tkR: 12, tkC: 0
     };
     this.steps = [
-      { el: 'top', hl: ['obvious'], name: 'Intro', say: "Hi, I'm Nav. His whole job: designing AI and systems that feel obvious. The panel on the right zooms from one word to a whole organisation." },
-      { el: 'work', hl: ['flip'], name: 'Case files', say: 'Four case files. Each has a surface and an underneath. Watch me flip three of them.' },
+      { el: 'top', hl: ['obvious'], name: 'Intro', ms: 7000, say: "Hi, I'm Nav. His job: designing AI and systems that feel obvious. I will show you the parts most people miss. Many of them wake up when you touch them." },
+      { el: 'hx-nm', name: 'His name', ms: 9500, act: 'name', say: "Hover his name, or tap it on a phone. It rolls through five sides of him: design chef, optimistic contrarian, curator of defaults, systems gardener, taste editor." },
+      { el: 'pw', name: 'Powers of ten', ms: 10000, act: 'pw', say: "This panel zooms through five scales, from one word to a whole organisation. Hover it, or use the arrows. Seeing every scale at once is the job." },
+      { el: 'top', name: 'Layout grid', ms: 7000, act: 'grid', desk: true, say: "The grid icon in the header shows the bones: twelve columns, 24 pixel gutters, real sizes. Nothing here sits where it does by accident." },
+      { el: 'work', hl: ['flip'], name: 'Case files', ms: 7000, say: 'Four case files. Each has a surface and an underneath. Watch me flip three of them.' },
+      { el: 'cf-es', hl: ['es'], name: 'Hover a button', ms: 7500, act: 'btn', say: "Buttons here are alive. Hover one and the pattern under it wakes up. This one opens the real numbers, and we will get there." },
       { el: 'cf-es', hl: ['es'], flip: 'es', name: 'Deal to cash', say: 'Intuit Enterprise Suite. Five roles, one deal. The team is shaping what they share.' },
       { el: 'cf-bs', hl: ['bs'], flip: 'bs', name: 'Bills & Subscriptions', say: "Intuit. A bill that couldn't take a question. The team is helping it explain itself." },
       { el: 'cf-sa', hl: ['sa'], flip: 'sa', name: 'Store discovery', say: 'Amazon. Seven services in one app, most of them hidden. With the team, we made them findable.' },
       { el: 'path', hl: ['path'], name: 'Path', say: "Eleven years, five places. The titles changed. The questions didn't." },
-      { el: 'beliefs', hl: ['invisible'], name: 'Beliefs', say: 'Four beliefs and one in the making. Move the slider in the second one: the more at stake, the more a person decides.' },
+      { el: 'beliefs', hl: ['invisible'], name: 'Beliefs', ms: 6500, say: 'Four beliefs and one in the making. Each one has something to touch. Let me show you.' },
+      { el: 'xr', name: 'Find the problem', ms: 7500, say: "Belief one. Move across the request and it dissolves into what was really meant. Every request arrives dressed as a solution." },
+      { el: 'sk', name: 'The stakes slider', ms: 8000, say: "Belief two. Drag the slider. The more at stake, the more a person decides, and the more AI hands the controls back." },
+      { sel: '.hw-lab .iv-wrap', name: 'Invisible design', ms: 8500, say: "Belief three. Hover this and it plays six small facts about the mind: round faces, the odd one out, why phone numbers come in chunks." },
+      { sel: '.hw-sys .hw-vis', name: 'Systems thinking', ms: 9000, say: "Belief four. Watch the wall get repainted again and again. The pipes behind it, names, rules, data and permissions, are designed once and keep running. That is where the care goes." },
+      { el: 'numbers', name: 'The real numbers', ms: 13000, act: 'num', say: "These figures stay sealed. Press See the real numbers and find out why. Go on. It is the best button on the page." },
+      { el: 'top', name: 'Comfort settings', ms: 9500, act: 'a11y', say: "The accessibility button up top opens comfort settings: sound, motion, and me. Every control is labelled for screen readers, and nothing depends on sight or sound alone." },
       { el: 'contact', hl: ['hello'], name: 'Contact', say: "That's the tour. Ask me anything, or say hello to him directly." }
     ];
-    this.secs = [['top', 'Intro', null], ['work', 'Work', 'Four case files. Flip one.'], ['path', 'Path', 'Eleven years, five places'], ['beliefs', 'Beliefs', 'Rule three is my favourite'], ['numbers', 'Numbers', 'Every number has a story'], ['contact', 'Contact', 'Say hello, or ask me first']];
+    this.secs = [['top', 'Intro', null], ['work', 'Work', 'Four case files. Flip one.'], ['path', 'Path', 'Eleven years, five places'], ['beliefs', 'Beliefs', 'Rule three is my favourite'], ['numbers', 'Numbers', 'One number stays sealed. Open it.'], ['contact', 'Contact', 'Say hello, or ask me first']];
     this.STEP = 7000;
     this.personas = ['design chef', 'optimistic contrarian', 'curator of defaults', 'systems gardener', 'taste editor'];
     this.mx = -999; this.my = -999; this.hasMouse = false; this.el = 0; this.h = 44; this.lastAct = 0;
@@ -1997,6 +2112,7 @@ class Component extends DCLogic {
       if (window.localStorage.getItem('mp6-ax') === '1') this.setState({ axSeen: true });
       if (window.localStorage.getItem('mp6-still') === '1') this.setState({ still: true });
       if (window.localStorage.getItem('mp6-nonav') === '1') this.setState({ nonav: true });
+      if (window.localStorage.getItem('mp6-lgcur') === '1') this.setState({ lgcur: true });
     } catch (e) {}
     const t = performance.now();
     this.t0 = t; this.lastAct = t; this.nextBlink = 2400;
@@ -2015,6 +2131,10 @@ class Component extends DCLogic {
       try { if (window.speechSynthesis) window.speechSynthesis.getVoices(); } catch (e) {}
     };
     window.addEventListener('mousemove', this._move);
+    this._tch = (e) => { if (!this.state.vt) return; const t = e.touches && e.touches[0]; this._vbTouch = t ? { x: t.clientX, y: t.clientY } : null; if (t) this.lastAct = performance.now(); };
+    this._tchEnd = () => { this._vbTouch = null; };
+    window.addEventListener('touchstart', this._tch, { passive: true }); window.addEventListener('touchmove', this._tch, { passive: true });
+    window.addEventListener('touchend', this._tchEnd, { passive: true }); window.addEventListener('touchcancel', this._tchEnd, { passive: true });
     window.addEventListener('scroll', this._scroll, { passive: true });
     window.addEventListener('wheel', this._wheel, { passive: true });
     window.addEventListener('touchmove', this._wheel, { passive: true });
@@ -2033,6 +2153,8 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     window.removeEventListener('mousemove', this._move);
+    window.removeEventListener('touchstart', this._tch); window.removeEventListener('touchmove', this._tch);
+    window.removeEventListener('touchend', this._tchEnd); window.removeEventListener('touchcancel', this._tchEnd);
     window.removeEventListener('scroll', this._scroll);
     window.removeEventListener('wheel', this._wheel);
     window.removeEventListener('touchmove', this._wheel);
@@ -2071,15 +2193,17 @@ class Component extends DCLogic {
     this.h += this.hv;
     if (Math.abs(target - this.h) < 0.3 && Math.abs(this.hv) < 0.3) { this.h = target; this.hv = 0; }
     const hs = this.h.toFixed(1);
-    if (hs !== this._hs) { this._hs = hs; nv.style.height = hs + 'px'; }
+    if (hs !== this._hs) { this._hs = hs; nv.style.height = hs + 'px'; try { document.documentElement.style.setProperty('--nvh', hs + 'px'); } catch (e) {} this.phoneAdjust(); }
   }
 
   eyesTick(now, H, s) {
     const face = document.getElementById('nv-eyes'); if (!face) return;
     const r = face.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     let dx = 0, dy = 0;
+    const nb = (s.sec === 'Numbers' && s.mode === 'idle' && !s.vt) ? document.querySelector('.it-num') : null;
     if (s.typing) dy = 200;
-    else if (s.mode === 'tour' && s.step >= 0) { const e = document.getElementById(this.steps[s.step].el); if (e) { const er = e.getBoundingClientRect(); dx = er.left + er.width / 2 - cx; dy = er.top + Math.min(er.height, H) / 3 - cy; } }
+    else if (s.mode === 'tour' && s.step >= 0) { const e = this.stepEl(this.steps[s.step]); if (e) { const er = e.getBoundingClientRect(); dx = er.left + er.width / 2 - cx; dy = er.top + Math.min(er.height, H) / 3 - cy; } }
+    else if (nb && !(this.hasMouse && Math.hypot(this.mx - cx, this.my - cy) < 260)) { const er = nb.getBoundingClientRect(); dx = er.left + er.width / 2 - cx; dy = er.top + er.height / 2 - cy; }
     else if (this.hasMouse && this.mx > -999) { dx = this.mx - cx; dy = this.my - cy; }
     else dy = now - (this.lastScroll || 0) < 600 ? Math.sign(this.vy || 1) * 200 : 120;
     const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 200), dz = s.mood === 'dizzy';
@@ -2110,7 +2234,7 @@ class Component extends DCLogic {
     if (cur[1] !== s.sec) {
       this.setState({ sec: cur[1] });
       document.querySelectorAll('.hd-nav a[data-sec]').forEach((a) => a.classList.toggle('on', a.getAttribute('data-sec') === cur[1]));
-      if (s.mode === 'idle' && !s.peek && cur[2] && !this['seen_' + cur[0]] && s.boot === 'off') { this['seen_' + cur[0]] = true; this.toast(cur[2]); }
+      if (s.mode === 'idle' && !s.peek && cur[2] && !this['seen_' + cur[0]] && s.boot === 'off') { this['seen_' + cur[0]] = true; this.toast(cur[2]); if (cur[0] === 'numbers') this.numNudge(); }
     }
     // the live size label on the selection box, measured like a design tool would
     const sel = document.getElementById('hx-sel'), dim = document.getElementById('hx-dim');
@@ -2133,10 +2257,10 @@ class Component extends DCLogic {
 
   tourTick(now, s) {
     if (s.mode !== 'tour') return;
-    if (!s.paused && !s.min) this.el += Math.min(60, now - (this.lastT || now));
+    if (!s.paused && !s.min && !s.vt) this.el += Math.min(60, now - (this.lastT || now));
     const segs = document.querySelectorAll('.sg');
-    for (let i = 0; i < segs.length; i++) segs[i].style.transform = 'scaleX(' + (i < s.step ? 1 : i === s.step ? Math.min(1, this.el / this.STEP) : 0).toFixed(3) + ')';
-    if (!s.paused && !s.min && this.el >= this.STEP && !this._adv) { this._adv = true; if (s.step < this.steps.length - 1) this.go(s.step + 1); else this.endTour(false); }
+    for (let i = 0; i < segs.length; i++) segs[i].style.transform = 'scaleX(' + (i < s.step ? 1 : i === s.step ? Math.min(1, this.el / this.dur(s.step)) : 0).toFixed(3) + ')';
+    if (!s.paused && !s.min && !s.vt && this.el >= this.dur(s.step) && !this._adv) { this._adv = true; if (s.step < this.steps.length - 1) this.go(s.step + 1); else this.endTour(false); }
   }
 
   /* ================= reveals and counters ================= */
@@ -2218,7 +2342,18 @@ class Component extends DCLogic {
     this.flushReveal();
     this.pulse();
     const hint = this.fine ? 'Hover me.' : 'Tap my eyes.';
-    setTimeout(() => this.toast(this.visited ? 'Welcome back. ' + hint : this.greet() + " I'm Nav. " + hint, 'Nav'), 450);
+    const hello = () => this.toast(this.visited ? 'Welcome back. ' + hint : this.greet() + " I'm Nav. " + hint, 'Nav');
+    setTimeout(() => {
+      if (this.state.mode !== 'idle' || this.state.boot !== 'off') return;
+      this.setState({ peek: true, hover: null, toast: '', toastT: '' }); this.sfx('boing');
+      const settle = () => {
+        if (this.state.mode !== 'idle' || !this.state.peek) return;
+        const nv = document.getElementById('nv');
+        if (this.state.islHover || (nv && nv.contains(document.activeElement))) { this._nvAuto = setTimeout(settle, 2500); return; }
+        this.setState({ peek: false }); setTimeout(hello, 500);
+      };
+      this._nvAuto = setTimeout(settle, 7500);
+    }, 650);
     setTimeout(() => { if (this.state.mood === 'happy') this.setState({ mood: '' }); }, 1600);
     this._pwT = setTimeout(() => { if (this.state.pwTouched || this.reduce || this.state.still) return; this.pwPlay(1, 3400); this._pwT = setTimeout(() => { if (!this.state.pwTouched) this.pwPlay(-1, 650); }, 3400 * 4 + 4200); }, 1900);
   }
@@ -2271,25 +2406,52 @@ class Component extends DCLogic {
       const g = document.getElementById('cf-grid');
       if (g && g.scrollWidth > g.clientWidth + 4) g.scrollTo({ left: el.offsetLeft - (g.clientWidth - el.clientWidth) / 2, behavior: smooth });
     }
-    const ph = (window.matchMedia && window.matchMedia('(max-width:600px)').matches); const safe = ph ? 76 : this.h + 30, r = el.getBoundingClientRect(), H = ph ? window.innerHeight - (this.h + 30) : window.innerHeight;
+    const ph = (window.matchMedia && window.matchMedia('(max-width:600px)').matches); const safe = ph ? 76 : this.h + 30, r = el.getBoundingClientRect(), H = ph ? window.innerHeight - (Math.max(this.h, this._navReserve || 0) + 30) : window.innerHeight;
     let top = window.pageYOffset + r.top - safe;
     if (center && r.height < H - safe - 20) top = window.pageYOffset + r.top - safe - (H - safe - r.height) / 2 + 10;
     window.scrollTo({ top: Math.max(0, top), behavior: smooth });
   }
 
+  dur(i) { const st = this.steps[i]; return (st && st.ms) || this.STEP; }
+  stepEl(st) { if (!st) return null; return (st.el && document.getElementById(st.el)) || (st.sel && document.querySelector(st.sel)) || null; }
+  tourLeave() { clearTimeout(this._actT); const f = this._leave; this._leave = null; if (f) { try { f(); } catch (e) {} } }
+  tourAct(name) {
+    const body = document.body, set = (v) => { try { body.setAttribute('data-th', v); } catch (e) {} }, clr = () => { try { body.removeAttribute('data-th'); } catch (e) {} };
+    if (name === 'name') { this.nmStart(); const t = setTimeout(() => this.nmStop(), 6400); return () => { clearTimeout(t); this.nmStop(); }; }
+    if (name === 'pw') { this.pwGo(0); this.pwPlay(1, 1500); return () => { clearInterval(this._pwI); this.pwGo(0); }; }
+    if (name === 'grid') { this.setState({ grid: true }); this.sfx('snap'); return () => this.setState({ grid: false }); }
+    if (name === 'btn') { set('btn'); return clr; }
+    if (name === 'num') { set('num'); return clr; }
+    if (name === 'a11y') { set('a11y'); const t = setTimeout(() => { if (this.state.mode === 'tour') { this.setState({ ax: true, axSeen: true }); this.sfx('pop'); } }, 2200); return () => { clearTimeout(t); clr(); if (this.state.ax) this.setState({ ax: false }); }; }
+    return null;
+  }
+  // on a phone the Nav is a bottom sheet: when it grows, the page makes room so nothing sits behind it
+  phoneAdjust() {
+    const prev = this._hAdj == null ? this.h : this._hAdj; this._hAdj = this.h;
+    const d = this.h - prev; if (!d || !PHN() || this.state.boot !== 'off') return;
+    const s = this.state; if (s.mode === 'tour' || s.mode === 'outro') return;
+    if (d > 0) { if (window.pageYOffset < 60 && s.mode !== 'chat') return; window.scrollBy({ top: d, behavior: 'instant' }); this._shift = (this._shift || 0) + d; }
+    else if (this._shift > 0) { const b = Math.min(-d, this._shift); window.scrollBy({ top: -b, behavior: 'instant' }); this._shift -= b; }
+  }
+
   go(i) {
     const st = this.steps[i]; if (!st) return;
+    if (PHN() && st.desk && i < this.steps.length - 1) { this.go(i + 1); return; }
     if (this.state.nonav) this.comfortSet({ nonav: false });
-    this.el = 0; this._adv = false; this._auto = performance.now();
+    this.tourLeave();
+    this.el = 0; this._adv = false; this._auto = performance.now(); this._shift = 0;
+    this._navReserve = PHN() ? 230 : 0;
     this.setState({ mode: 'tour', peek: false, step: i, paused: false, flipped: {}, min: false, toast: '', toastT: '', hover: null });
-    setTimeout(() => this.scrollToEl(document.getElementById(st.el), !!st.flip), 80);
-    setTimeout(() => this.highlight(st.hl), 650);
+    setTimeout(() => this.scrollToEl(this.stepEl(st), !!st.flip), 80);
+    if (PHN()) setTimeout(() => { if (this.state.step === i && this.state.mode === 'tour') this.scrollToEl(this.stepEl(st), !!st.flip); }, 1100);
+    setTimeout(() => this.highlight(st.hl || []), 650);
     this.speak(st.say, i === this.steps.length - 1 ? 'happy' : '');
+    if (st.act) { clearTimeout(this._actT); this._actT = setTimeout(() => { if (this.state.step === i && this.state.mode === 'tour') this._leave = this.tourAct(st.act); }, 1000); }
     if (st.flip) { clearTimeout(this._ft); this._ft = setTimeout(() => { if (this.state.step === i && this.state.mode === 'tour') { const f = {}; f[st.flip] = true; this.setState({ flipped: f }); this.sfx('coin'); } }, 3200); }
   }
 
   endTour(early) {
-    clearTimeout(this._ft);
+    clearTimeout(this._ft); this.tourLeave(); this._navReserve = 0;
     this.highlight([]);
     this.setState({ mode: 'idle', step: -1, paused: false, min: false, flipped: {} });
     if (early) { this.react('sad', 2600); this.sfx('trombone'); setTimeout(() => this.meme('oh no', 1.5, 0.8), 1500); setTimeout(() => this.toast('Wow. Rude. (Kidding.)'), 300); }
@@ -2372,6 +2534,9 @@ class Component extends DCLogic {
       const c = document.getElementById('cur'); if (!c) return;
       const t = e.target.closest ? e.target.closest('[data-cur],[data-c],a,button,summary,.cf,.hx-nm,.ib') : null;
       const inp = !!(e.target.closest && e.target.closest('input:not([type="range"]),textarea'));
+      const vb = (t && !inp) ? this.curVerb(t) : ['', ''], cp = c.querySelector('.cp');
+      if (cp) { const b = cp.querySelector('b'); if (b && b.textContent !== vb[0]) b.textContent = vb[0]; if (cp.getAttribute('data-k') !== vb[1]) cp.setAttribute('data-k', vb[1]); }
+      c.classList.toggle('hasv', !!vb[0]);
       c.classList.toggle('off', inp);
       c.classList.toggle('hov', !!t && !inp);
       if (t && t !== this._lastHov && !inp && !t.closest('#nv')) this.sfx('tick');
@@ -2384,11 +2549,29 @@ class Component extends DCLogic {
     document.addEventListener('mouseup', this._up);
   }
 
+  // the word on the pointer: always a plain verb, always with an icon, never colour alone
+  curVerb(t) {
+    if (t.disabled || t.getAttribute('aria-disabled') === 'true') return ['Not available', 'block'];
+    const M = { ask: ['Ask', 'ask'], numbers: ['Open', 'open'], flip: ['Flip', 'flip'], open: ['Open', 'open'], copy: ['Copy', 'copy'], zoom: ['Zoom', 'zoom'], poke: ['Nav', 'eye'], play: ['Play', 'play'], out: ['Zoom out', 'zoom'], in: ['Zoom in', 'zoom'], motion: ['Toggle', 'eye'], mail: ['Email', 'mail'], lens: ['Look', 'eye'], grid: ['Grid', 'drag'], drag: ['Drag', 'drag'], a11y: ['Comfort', 'eye'] };
+    const k = t.getAttribute('data-cur') || '';
+    if (M[k]) return M[k];
+    if (t.matches('summary')) return ['Expand', 'expand'];
+    if (t.matches('.hx-nm')) return ['Sides', 'eye'];
+    if (t.matches('a[href^="mailto"]')) return ['Email', 'mail'];
+    if (t.matches('a,button,.ib')) return ['Open', 'open'];
+    return ['', ''];
+  }
+
   drawCursor() {
     if (!this.fine && !this.parts.length && !this._fxDirty) return;
     const c = document.getElementById('cur'), cv = document.getElementById('fx'); if (!c || !cv) return;
     const t = 'translate(' + this.mx.toFixed(1) + 'px,' + this.my.toFixed(1) + 'px)';
-    if (this.fine && t !== this._curT) { this._curT = t; c.style.transform = t; }
+    if (this.fine && t !== this._curT) {
+      this._curT = t; c.style.transform = t;
+      const fl = this.mx > window.innerWidth - 200, fb = this.my > window.innerHeight - 70;
+      if (fl !== this._fl) { this._fl = fl; c.classList.toggle('fl', fl); }
+      if (fb !== this._fb) { this._fb = fb; c.classList.toggle('fb', fb); }
+    }
     if (!this.parts.length && !this._fxDirty) return;
     const W = window.innerWidth, H = window.innerHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
     if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
@@ -2875,11 +3058,11 @@ class Component extends DCLogic {
   /* ================= comfort settings ================= */
   comfortApply() {
     const pf = document.getElementById('pf'); if (!pf) return;
-    pf.classList.toggle('still', !!this.state.still); pf.classList.toggle('nonav', !!this.state.nonav);
+    pf.classList.toggle('still', !!this.state.still); pf.classList.toggle('nonav', !!this.state.nonav); pf.classList.toggle('lgcur', !!this.state.lgcur);
   }
   comfortSet(u) {
     this.setState(u);
-    try { if ('still' in u) window.localStorage.setItem('mp6-still', u.still ? '1' : '0'); if ('nonav' in u) window.localStorage.setItem('mp6-nonav', u.nonav ? '1' : '0'); } catch (e) {}
+    try { if ('still' in u) window.localStorage.setItem('mp6-still', u.still ? '1' : '0'); if ('nonav' in u) window.localStorage.setItem('mp6-nonav', u.nonav ? '1' : '0'); if ('lgcur' in u) window.localStorage.setItem('mp6-lgcur', u.lgcur ? '1' : '0'); } catch (e) {}
     setTimeout(() => this.comfortApply(), 0);
   }
 
@@ -2931,6 +3114,28 @@ void main(){
     this._vbGL = { cv: cv, gl: gl, pr: pr, U: U, seg: new Float32Array(256), rad: new Float32Array(128) };
     return this._vbGL;
   }
+  // a hand that wanders near the button now and then, so nobody has to guess there is something to reach for
+  vbGhost(now, S, P) {
+    if (!S.g0) S.g0 = now + 900;
+    if (now < S.g0) return null;
+    const T = 9000, t = (now - S.g0) % T, ease = (x) => x * x * (3 - 2 * x), ph = PHN();
+    const A0 = ph ? -1.5 : -0.95, A1 = ph ? -1.15 : -0.15;
+    let D, a, alpha;
+    if (t < 900) { D = 135; a = A0; alpha = ease(t / 900); }
+    else if (t < 2700) { const k = ease((t - 900) / 1800); D = 135 - 57 * k; a = A0 + (A1 - A0) * k; alpha = 1; }
+    else if (t < 5000) { const k = (t - 2700) / 2300; D = 78 + 5 * Math.sin(k * 12.5); a = A1 + 0.12 * Math.sin(k * 6.28); alpha = 1; }
+    else if (t < 6200) { const k = ease((t - 5000) / 1200); D = 78 + 60 * k; a = A1 - 0.4 * k; alpha = 1 - k; }
+    else return null;
+    const ux = Math.cos(a), uy = Math.sin(a); let lo = 0, hi = 400;
+    for (let i = 0; i < 10; i++) { const m = (lo + hi) / 2; if (this.vbSdPill(P.cx + ux * m, P.cy + uy * m, P) < D) lo = m; else hi = m; }
+    return { x: P.cx + ux * lo, y: P.cy + uy * lo, a: alpha };
+  }
+  numNudge() {
+    try { document.body.setAttribute('data-th', 'num'); } catch (e) {}
+    clearTimeout(this._nnT);
+    this._nnT = setTimeout(() => { try { if (document.body.getAttribute('data-th') === 'num' && this.state.mode !== 'tour') document.body.removeAttribute('data-th'); } catch (e) {} }, 4500);
+  }
+
   vbSdPill(x, y, P) { const qx = Math.abs(x - P.cx) - P.hx + P.r, qy = Math.abs(y - P.cy) - P.hy + P.r; return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - P.r; }
   vbEdge(ang, P) { // where a ray from the pill centre leaves the pill
     const dx = Math.cos(ang), dy = Math.sin(ang); let lo = 0, hi = P.hx + 10;
@@ -2938,7 +3143,7 @@ void main(){
     return [P.cx + dx * lo, P.cy + dy * lo];
   }
   vbTick(now) {
-    if (!this.state.vt) { if (this._vbS) { this._vbS = null; const c0 = document.getElementById('cur'); if (c0) c0.classList.remove('off'); } return; }
+    if (!this.state.vt) { if (this._vbS) { this._vbS = null; const c0 = document.getElementById('cur'); if (c0) c0.classList.remove('off'); const p0 = document.getElementById('pf'); if (p0) p0.classList.remove('glove'); } return; }
     const G = this.vbInit(); if (!G) return;
     const cv = G.cv, r = cv.getBoundingClientRect(); if (!r.width) return;
     const W = Math.round(r.width), Hh = Math.round(r.height), SC = Math.min(2, window.devicePixelRatio || 1);
@@ -2948,10 +3153,11 @@ void main(){
     const S = this._vbS || (this._vbS = { ropes: [], last: now, grab: false, snapT: -1e9, spikes: [], ang: 0 });
     const dt = Math.min(0.033, Math.max(0.001, (now - S.last) / 1000)); S.last = now;
     // the cursor in stage coordinates, and the glove's fingers
-    const has = this.fine && this.hasMouse && !calm;
-    let cx = this.mx - r.left, cy = this.my - r.top;
+    const tch = this._vbTouch, has = ((this.fine && this.hasMouse) || !!tch) && !calm;
+    let cx = (tch ? tch.x : this.mx) - r.left, cy = (tch ? tch.y : this.my) - r.top;
     const inStage = has && cx > -40 && cy > -40 && cx < W + 40 && cy < Hh + 40;
-    const d = has ? this.vbSdPill(cx, cy, P) : 1e9;
+    let d = has ? this.vbSdPill(cx, cy, P) : 1e9, ghostA = 0, hasAny = has;
+    if (!calm && !S.grab && !(has && d < SENSE + 90)) { const gh = this.vbGhost(now, S, P); if (gh) { cx = gh.x; cy = gh.y; ghostA = gh.a; hasAny = true; d = this.vbSdPill(cx, cy, P); } }
     if (S.grab) { // the web tugs the hand a few pixels toward the goo
       const tx = P.cx - cx, ty = P.cy - cy, tl = Math.hypot(tx, ty) || 1, pull = Math.min(7, (RELEASE - d) * 0.05 + 3);
       cx += tx / tl * pull; cy += ty / tl * pull;
@@ -2962,7 +3168,7 @@ void main(){
     // state: sense, grab, release
     if (!S.grab && d < REACH && d > 4) { S.grab = true; this.sfx('pop'); }
     if (S.grab && (d > RELEASE || d <= 0 || !has)) { S.grab = false; S.snapT = now; this.sfx('snap'); for (let i = 0; i < 4; i++) S.spikes.push({ a: S.ang + (i - 1.5) * 0.5 + (Math.random() - 0.5) * 0.3, t0: now + i * 40, len: 16 + Math.random() * 14 }); }
-    const sensing = has && d < SENSE && d > 0;
+    const sensing = hasAny && d < SENSE && d > 0;
     if (sensing || S.grab) S.ang = Math.atan2(cy - P.cy, cx - P.cx);
     // ropes: 7 very thin strands, 5 very fine hairs between them
     if (!S.ropes.length) { const mk = (thick, slot, f) => { const n = thick ? 7 : 4; S.ropes.push({ thick: thick, slot: slot, n: n, L: 0, pts: Array.from({ length: n }, () => [P.cx, P.cy]), prev: Array.from({ length: n }, () => [P.cx, P.cy]), ph: Math.random() * 6.28, f: f }); }; for (let i = 0; i < 7; i++) mk(true, i, i); [0.5, 1.5, 3, 4.5, 5.5].forEach((k) => mk(false, k, -1)); }
@@ -3021,11 +3227,12 @@ void main(){
     // the glove, drawn on its own canvas; the system cursor and the page cursor step aside
     const gc = document.getElementById('vb-g'), cur = document.getElementById('cur');
     if (cur) cur.classList.toggle('off', inStage);
+    const pf0 = document.getElementById('pf'); if (pf0) pf0.classList.toggle('glove', inStage);
     if (!gc) return;
     if (gc.width !== W * 2) { gc.width = W * 2; gc.height = Hh * 2; }
     const g = gc.getContext('2d'); g.setTransform(2, 0, 0, 2, 0, 0); g.clearRect(0, 0, W, Hh);
-    if (!inStage) return;
-    g.save(); g.translate(cx, cy); g.rotate(tilt); g.scale(0.5, 0.5); g.lineJoin = 'round'; g.lineCap = 'round'; g.lineWidth = 3; g.strokeStyle = '#111'; g.fillStyle = '#fff';
+    if (!inStage && !ghostA) return;
+    g.save(); g.globalAlpha = inStage ? 1 : ghostA * 0.85; g.translate(cx, cy); g.rotate(tilt); g.scale(0.5, 0.5); g.lineJoin = 'round'; g.lineCap = 'round'; g.lineWidth = 3; g.strokeStyle = '#111'; g.fillStyle = '#fff';
     const blob = (x, y, rx, ry, a) => { g.beginPath(); g.ellipse(x, y, rx, ry, a || 0, 0, 6.283); g.fill(); g.stroke(); };
     blob(14, 40, 15, 6, 0); // cuff
     blob(13, 24, 16, 15, 0); // palm
@@ -3114,7 +3321,7 @@ void main(){
     const isPeek = isIdle && s.peek && s.boot === 'off';
     const toast = isIdle && !s.peek && !hovered && s.toast;
     const step = this.steps[s.step];
-    const sugg = { Intro: 'Hover the panel on the right, or take the tour.', Work: 'Try asking me about the Amazon stores.', Path: 'Ask me about any of the five places.', Beliefs: 'Ask me which belief matters most.', Numbers: 'Every number here comes with a story.', Contact: "He replies. I'm faster, though." };
+    const sugg = { Intro: 'Hover the panel on the right, or take the tour.', Work: 'Try asking me about the Amazon stores.', Path: 'Ask me about any of the five places.', Beliefs: 'Ask me which belief matters most.', Numbers: 'One figure stays sealed. Try the button.', Contact: "He replies. I'm faster, though." };
     let barTitle = s.sec, barSub = 'Nav';
     if (s.boot !== 'off') { barTitle = 'Nav'; barSub = 'waking up'; }
     else if (isTourAny) { barTitle = 'Stop ' + (s.step + 1) + ' of ' + this.steps.length; barSub = s.min ? 'Paused · tap my eyes to resume' : s.paused ? 'Paused' : step ? step.name : ''; }
@@ -3123,6 +3330,7 @@ void main(){
     else if (hovered) { barTitle = hovered[0]; barSub = 'Ask about ' + hovered[1]; }
     else if (toast) { barTitle = s.toastT || s.sec; barSub = s.toast; }
     else if (isPeek) { barTitle = 'Nav'; barSub = 'Pranav’s guide · ' + s.sec; }
+    if (PHN() && isIdle && !isPeek && !hovered && !toast && s.boot === 'off') { barTitle = 'Nav'; barSub = 'Tap to open'; }
     const width = isChat ? 'w4' + (s.big ? ' big' : '') : s.mode === 'outro' ? 'w5' : isTour ? 'w3' : isPeek ? 'w2' : (hovered || toast || (isTourAny && s.min)) ? 'w1' : '';
     const msgs = (s.msgs.length ? s.msgs : [{ u: false, text: "Ask me anything about Pranav's work. I only answer from what's on this page." }]).map((m) => ({ cls: m.u ? 'u' : 'b', text: m.text, typing: !!m.typing, hasGo: !!m.go, goLabel: m.go ? m.go.label : '', go: () => { if (m.go) m.go.fn(); } }));
     const qs = ["What's he working on now?", 'What was the impact?', 'Tell me about the Amazon stores', 'How did Fresh double?', 'Bills & Subscriptions', 'How does he think?', 'Career path', 'The zoom', 'Who are you?', 'Contact'];
@@ -3176,6 +3384,7 @@ void main(){
       axToggle: () => { const o = !this.state.ax; this.setState({ ax: o, axSeen: true }); try { window.localStorage.setItem('mp6-ax', '1'); } catch (e) {} this.sfx(o ? 'pop' : 'click'); if (o) setTimeout(() => { const x = document.querySelector('#ax .ax-x'); if (x) x.focus(); }, 60); },
       axClose: () => { this.setState({ ax: false }); const b = document.querySelector('.ax-b'); if (b) b.focus(); },
       axKey: (e) => { if (e.key === 'Escape') { this.setState({ ax: false }); const b = document.querySelector('.ax-b'); if (b) b.focus(); } },
+      swLg: s.lgcur ? 'on' : '', lgStr: s.lgcur ? 'true' : 'false', toggleLg: () => { this.comfortSet({ lgcur: !this.state.lgcur }); this.sfx('click'); },
       swSnd: s.sound ? 'on' : '', swMo: s.still ? '' : 'on', moStr: s.still ? 'false' : 'true', swNav: s.nonav ? '' : 'on', navStr: s.nonav ? 'false' : 'true',
       moCopy: s.still ? 'Motion is off. Bring it back?' : 'Too much going on? Switch the motion off.',
       toggleMotion: () => { const st = !this.state.still; this.comfortSet({ still: st }); this.sfx('click'); if (st) { clearInterval(this._pwI); clearInterval(this._skI); } },
@@ -3308,7 +3517,7 @@ void main(){
         const st = this.state, now = performance.now(); this.lastAct = now;
         this._pokes = now - (this._lastPoke || 0) < 900 ? (this._pokes || 0) + 1 : 1; this._lastPoke = now;
         if (this._pokes >= 3 && st.mode === 'idle') { this._pokes = 0; this.sfx('bonk'); this.react('angry', 2200); setTimeout(() => this.meme('bruh', 0.55, 0.75), 220); this.toast("Stop poking me. I'm literally a pill.", 'Nav'); return; }
-        if (st.mode === 'tour' && st.min) { this.setState({ min: false, paused: false }); this.scrollToEl(document.getElementById(this.steps[st.step].el), false); return; }
+        if (st.mode === 'tour' && st.min) { this.setState({ min: false, paused: false }); this.scrollToEl(this.stepEl(this.steps[st.step]), false); return; }
         this.sfx('pop'); if (st.mode === 'idle') this.setState({ peek: !st.peek, toast: '', toastT: '' });
       },
       peekOn: () => {

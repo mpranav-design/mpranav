@@ -1917,6 +1917,52 @@ body[data-th="btn"] #cs-p0 .cs-nbtn{transform:translateY(-3px) scale(1.05)}
 .cvw-zl,.cvw-zr{top:60px}
 }
 @media (prefers-reduced-motion:reduce){.cvw-sl.in{animation:none}.cg-c{transition:none}}
+
+/* r69 cards: whole card opens the story, the numbers button lives on every card, Open the case on two of them */
+.cg-c{cursor:default}
+.cg-c:focus-visible{outline:none}
+.cg-hit{position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;padding:0;border:0;border-radius:inherit;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cg-hit:focus-visible{outline:3px solid var(--sel);outline-offset:-3px}
+.cg-ft{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px;margin-top:22px;pointer-events:none}
+.cg-ft>*{pointer-events:auto}
+.cg-go{position:static;right:auto;bottom:auto;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px 0 20px;border:0;border-radius:999px;color:inherit;text-decoration:none;font:inherit;font-size:14px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cg-go:hover{background:rgba(255,255,255,.26)}
+.cg-c.cf-bs .cg-go:hover,.cg-c.cf-sa .cg-go:hover{background:rgba(31,31,31,.14)}
+.cg-go:focus-visible{outline:3px solid var(--sel);outline-offset:3px}
+.cg-c:hover .cg-go svg{transform:none}
+.cg-go:hover svg{transform:translateX(3px)}
+.cg-ft .cs-nbtn{flex:none}
+.cg-c .cs-nbtn{box-shadow:none}
+/* the password gate */
+.pgx{position:fixed;inset:0;z-index:260;display:grid;place-items:center;padding:20px;background:rgba(11,11,12,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .3s var(--e-std),visibility 0s .3s}
+.pgx.on{opacity:1;visibility:visible;transition:opacity .3s var(--e-std),visibility 0s}
+.pgx-box{position:relative;width:min(440px,100%);padding:clamp(24px,5vw,36px);border-radius:28px;background:var(--surface);color:var(--ink);box-shadow:0 40px 100px -30px rgba(0,0,0,.6);transform:translateY(12px) scale(.98);transition:transform .45s var(--e-dec)}
+.pgx.on .pgx-box{transform:none}
+.pgx-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--primary-con);color:var(--on-primary-con)}
+.pgx-ic svg{width:20px;height:20px}
+.pgx-h{margin:16px 0 8px;font-size:clamp(24px,5.5vw,28px);font-weight:600;letter-spacing:-.025em;line-height:1.12;text-wrap:balance}
+.pgx-p{margin:0 0 20px;color:var(--ink-2);font-size:15px;line-height:1.5}
+.pgx-f{display:flex;flex-wrap:wrap;gap:10px}
+.pgx-in{flex:1 1 180px;min-width:0;height:48px;padding:0 16px;border:0;border-radius:14px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:16px;box-shadow:inset 0 0 0 1.5px var(--outline-2)}
+.pgx-in:focus{outline:none;box-shadow:inset 0 0 0 2px var(--primary)}
+.pgx-go{flex:none;height:48px;padding:0 24px;border:0;border-radius:999px;background:var(--primary);color:#fff;font-size:15px;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s var(--e-std)}
+.pgx-go:hover{background:var(--primary-hi)}
+.pgx-go[disabled]{opacity:.6;cursor:default}
+.pgx-msg{min-height:22px;margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--red)}
+.pgx-msg.ok{color:var(--green)}
+.pgx-open{display:none;align-items:center;justify-content:center;gap:10px;min-height:48px;margin-top:6px;padding:0 24px;border-radius:999px;background:var(--primary);color:#fff;font-size:15px;font-weight:600;text-decoration:none}
+.pgx-open svg{width:16px;height:16px}
+.pgx.ok .pgx-f{display:none}
+.pgx.ok .pgx-open{display:inline-flex}
+.pgx-help{margin:16px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.pgx-help a{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+.pgx-x{position:absolute;right:14px;top:14px;width:40px;height:40px;border:0;border-radius:50%;background:var(--surface-2);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.pgx-x svg{width:14px;height:14px}
+.pgx-box.no{animation:pgxno .4s var(--e-std)}
+@keyframes pgxno{20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.pgx-box.no{animation:none}}
+/* hero film tile: the grid track can never grow past the screen, so the tile stays centred on phones */
+@media (max-width:980px){.hx-in{grid-template-columns:minmax(0,1fr)}.hx-spec{min-width:0}.fv{margin-left:auto;margin-right:auto}}
 </style>
 
 </head>
@@ -2519,7 +2565,6 @@ kit.scene('done', {
     }
     _start() {
       this._t0 = performance.now();
-      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { this._draw(1.8); return; }
       this._raf = requestAnimationFrame(this._tick);
     }
     _tick(now) {
@@ -2538,6 +2583,7 @@ kit.scene('done', {
 })();
 
 } catch (e) {}
+const PGX = {"es": {"s":"uIHMLZmRVer6LPqUHQG/4g==","v":"LDuJG6d8YjS+BKSI","c":"2IazzO/AWikhZFxSbwU9MQVfGk2Z+OEjxlzq8JGB7bhXpmBqPXE/2ChAX7zfTm3mG87f+lQDzpX3s8RKTU3NayARJnrveZuFgIqO3iXMdvhToaHZSKTI42Kl+sWzAcI89xqjoMOvv6taNEjTOl21dLIOArqZ4CRmh6GctFISaDozC8Rd8EhdO2TTYohM20AV7mBhADdVmkdkpoVx/kfDR9BI+gApbSndTsAr5UZRuEEH6RK0cRjjRiBprAO46mmBKx3p6w==","n":250000}, "sa": {"s":"xOPX5FI9INHWdNjXKNUyKg==","v":"xYqM0kn2PcN3wVxg","c":"JlKP05SgqUpcGUeEcUkTL3hzbaSSi3z9cQTealgTMy+7aMRQplsvnz2EzHm5hjb5eJWwttHaoUp8GlVUToAWTIpX4ekBIzP+fP1jJkk2ud/MGFrMvG9MeiLEX22j9tqo89CEjv7BZMIF/IdJmtMCUYoJ38beYgAwJqE/","n":250000}};
 const CV_DATA = [{"cls": "cf-es", "name": "Enterprise Suite", "org": "Enterprise Suite · Deal to cash", "role": "Staff Product Designer · design direction", "slides": [{"k": "Thesis", "big": "5 roles", "h": "Five roles touch a deal before it becomes revenue. Our team worked on what they share.", "p": "5 roles touch every deal after signing. The customer sees none of it."}, {"k": "The brief", "h": "Help sellers quote faster, and give customers a way to manage their own orders."}, {"k": "What was underneath", "p": "Once a deal is signed, the order passes through several teams and systems. The customer cannot see any of it, and each team holds only part of the picture."}, {"k": "What we did", "ul": ["Shaped a self serve order experience, so customers can see what they bought, what they will pay and what happens next, and resolve common issues without calling anyone.", "Tested demand before committing, and took early designs to customers.", "Designed with the other roles in mind: the order desk, customer success and implementation teams.", "Explored AI assistance for sellers preparing quotes, with people keeping the final decision."]}, {"k": "My role", "h": "experience strategy and design direction, working with two designers and partners across product, engineering and operations.", "tags": ["Agentic AI", "Self serve", "In development"]}]}, {"cls": "cf-bs", "name": "Bills & Subscriptions", "org": "Intuit · Bills & Subscriptions", "role": "Staff Product Designer · FY26", "slides": [{"k": "Thesis", "big": "4 questions", "h": "Billing is where trust is earned or lost. The team set out to make the page explain itself.", "p": "4 questions every customer asks of a bill: what do I owe, why did it change, what am I using, how do I pay?"}, {"k": "The brief", "h": "Refresh the Bills & Subscriptions page."}, {"k": "What was underneath", "p": "The page listed what customers own but gave little help in understanding a charge. Their questions ended up in spreadsheets and support calls."}, {"k": "What we did", "ul": ["Reviewed the page through a heuristic evaluation, customer research and a comparison with how other billing pages work.", "Made the case to leadership that the page should explain, not just display.", "Set a direction built around a clear billing summary, usage and limits kept in view, and AI help that explains a charge where the customer is looking.", "Kept it practical: it builds on existing platforms and is designed for price disclosure rules."]}, {"k": "My role", "h": "staff designer, working with a principal designer and a PM, and contributing research and competitive analysis.", "tags": ["AI insights", "Exec alignment", "Trust"]}]}, {"cls": "cf-sa", "name": "Super App", "org": "Amazon · Shopping app", "role": "UX Leader · 2022 to 2025", "slides": [{"k": "Thesis", "big": "7 → 1", "h": "Seven services sat behind one icon. With the team, we helped customers find them.", "p": "7 → 1 services, one app"}, {"k": "The brief", "h": "Make seven Amazon services feel like one app."}, {"k": "What was underneath", "p": "Customers knew the store names but not what each store was for. The stores blurred together, and most visits began on search or product pages, so a homepage fix alone would never reach them."}, {"k": "What we did", "ul": ["Worked on how customers discover stores: a consistent way for each store to show its value, with standardised motion that teams could adopt at scale.", "Helped write the frameworks and mechanisms so other teams could carry the work across emerging markets without me in the room.", "Contributed to discovery inside search and product pages, and to how colour and the app frame behave across the homepage and the pages after it."]}, {"k": "My role", "h": "design lead for the experience, working with a Design Director, researchers, co designers and engineers.", "tags": ["Discovery", "Frameworks", "Emerging markets"]}]}, {"cls": "cf-fr", "name": "Fresh", "org": "Amazon India · Fresh", "role": "UX Leader · value perception", "slides": [{"k": "Thesis", "big": "40→80%", "h": "Customers had the value in hand. They just couldn’t see it.", "p": "40→80% cashback utilisation, with a 1.1% lift in conversion"}, {"k": "The brief", "h": "Help customers see the value of Fresh."}, {"k": "What was underneath", "p": "The value was there, but customers could not see it. They knew cashback existed, but not what it was worth or where to use it."}, {"k": "What we did", "ul": ["Made the value easier to understand at the moments when customers were deciding.", "Cashback utilisation rose from 40% to 80%, and conversion grew by 1.1%.", "The solution then scaled beyond Fresh."]}, {"k": "My role", "h": "UX lead for the Fresh value experience, working with the Fresh team and partners.", "tags": ["Commerce", "Value perception", "+1.1% conversion"]}]}];
 const PHN = () => (window.matchMedia && window.matchMedia('(max-width:600px)').matches);
 class Component extends DCLogic {
@@ -2557,8 +2603,8 @@ class Component extends DCLogic {
       { el: 'work', hl: ['flip'], name: 'Case files', ms: 7000, say: 'Four case files. Each has a surface and an underneath. Watch me open three of them.' },
       { el: 'cs-p0', hl: ['es'], cs: 0, noreveal: true, name: 'Open a case', ms: 6500, say: "Every case opens as a short story. Tap through it: the thesis, the work before the work, what we did." },
       { el: 'cs-p0', hl: ['es'], cs: 0, name: 'Deal to cash', say: 'Intuit Enterprise Suite. Five roles, one deal. The team is shaping what they share.' },
-      { el: 'cs-p1', hl: ['bs'], cs: 1, name: 'Bills & Subscriptions', say: "Intuit. A bill that couldn't take a question. The team is helping it explain itself." },
       { el: 'cs-p2', hl: ['sa'], cs: 2, name: 'Store discovery', say: 'Amazon. Seven services in one app, most of them hidden. With the team, we made them findable.' },
+      { el: 'cs-p1', hl: ['bs'], cs: 1, name: 'Bills & Subscriptions', say: "Intuit. A bill that couldn't take a question. The team is helping it explain itself." },
       { el: 'path', hl: ['path'], name: 'Path', say: "Eleven years, five places. The titles changed. The questions didn't." },
       { el: 'beliefs', hl: ['invisible'], name: 'Beliefs', ms: 6500, say: 'Four beliefs and one in the making. Each one has something to touch. Let me show you.' },
       { el: 'xr', name: 'Find the problem', ms: 7500, say: "Belief one. Move across the request and it dissolves into what was really meant. Every request arrives dressed as a solution." },
@@ -2608,7 +2654,7 @@ class Component extends DCLogic {
       try { if (window.speechSynthesis) window.speechSynthesis.getVoices(); } catch (e) {}
     };
     window.addEventListener('mousemove', this._move);
-    this._tch = (e) => { if (!this.state.vt) return; const t = e.touches && e.touches[0]; this._vbTouch = t ? { x: t.clientX, y: t.clientY } : null; if (t) this.lastAct = performance.now(); };
+    this._tch = (e) => { const t = e.touches && e.touches[0]; this._vbTouch = t ? { x: t.clientX, y: t.clientY } : null; if (t) this.lastAct = performance.now(); };
     this._tchEnd = () => { this._vbTouch = null; };
     window.addEventListener('touchstart', this._tch, { passive: true }); window.addEventListener('touchmove', this._tch, { passive: true });
     window.addEventListener('touchend', this._tchEnd, { passive: true }); window.addEventListener('touchcancel', this._tchEnd, { passive: true });
@@ -3162,6 +3208,55 @@ class Component extends DCLogic {
   /* ================= case stage: the surface and what was underneath ================= */
 
   /* ================= case cards and the story viewer ================= */
+  /* ================= password gate: the Figma link is stored encrypted, only the right password opens it ================= */
+  async pgxDecrypt(pw, k) {
+    const G = PGX[k]; if (!G) throw new Error('no gate');
+    pw = String(pw).trim().toLowerCase();
+    const enc = new TextEncoder(), b = (x) => Uint8Array.from(atob(x), (c) => c.charCodeAt(0));
+    const km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b(G.s), iterations: G.n, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b(G.v) }, key, b(G.c));
+    return new TextDecoder().decode(pt);
+  }
+  pgxOpen(k) {
+    this._pgxG = k === 'sa' ? 'sa' : 'es';
+    const w = document.getElementById('pgx'), i = document.getElementById('pgx-in'), m = document.getElementById('pgx-msg'); if (!w || !i || !m) return;
+    this._pgxFrom = document.activeElement;
+    w.classList.remove('ok'); m.textContent = ''; m.className = 'pgx-msg'; i.value = ''; document.getElementById('pgx-go').disabled = false;
+    const a = document.getElementById('pgx-open'); if (a) a.removeAttribute('href');
+    w.classList.add('on'); w.setAttribute('aria-hidden', 'false'); document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => { try { i.focus({ preventScroll: true }); } catch (e) {} }, 90);
+    this.sfx && this.sfx('click');
+    if (!this._pgxK) { this._pgxK = (e) => { const g = document.getElementById('pgx'); if (e.key === 'Escape' && g && g.classList.contains('on')) this.pgxClose(); }; document.addEventListener('keydown', this._pgxK); }
+  }
+  pgxClose() {
+    const w = document.getElementById('pgx'); if (!w) return;
+    w.classList.remove('on'); w.setAttribute('aria-hidden', 'true'); document.documentElement.style.overflow = '';
+    const i = document.getElementById('pgx-in'); if (i) i.value = '';
+    const a = document.getElementById('pgx-open'); if (a) a.removeAttribute('href');
+    const f = this._pgxFrom; this._pgxFrom = null; if (f && f.focus) { try { f.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  async pgxGo() {
+    const w = document.getElementById('pgx'), i = document.getElementById('pgx-in'), m = document.getElementById('pgx-msg'), b = document.getElementById('pgx-go'), bx = document.getElementById('pgx-box');
+    if (!w || !i || !m || !b || b.disabled) return;
+    const pw = i.value; m.className = 'pgx-msg';
+    if (!pw) { m.textContent = 'Type the password first.'; return; }
+    if (!(window.crypto && window.crypto.subtle)) { m.textContent = 'This needs a secure connection. Open the site over https.'; return; }
+    b.disabled = true; m.textContent = 'Checking';
+    let url = null; try { url = await this.pgxDecrypt(pw, this._pgxG || 'es'); } catch (e) { url = null; }
+    b.disabled = false;
+    if (!url || url.indexOf('https://www.figma.com/') !== 0) {
+      m.textContent = 'That password did not work. Try again.'; this.sfx && this.sfx('snap');
+      if (bx) { bx.classList.remove('no'); void bx.offsetWidth; bx.classList.add('no'); }
+      try { i.focus({ preventScroll: true }); i.select(); } catch (e) {}
+      return;
+    }
+    i.value = ''; const a = document.getElementById('pgx-open'); if (a) a.setAttribute('href', url);
+    w.classList.add('ok'); m.className = 'pgx-msg ok'; m.textContent = 'Unlocked.'; this.sfx && this.sfx('coin');
+    let o = null; try { o = window.open(url, '_blank'); if (o) o.opener = null; } catch (e) { o = null; }
+    if (o) setTimeout(() => this.pgxClose(), 500); else if (a) { try { a.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
   kvData() { return CV_DATA; }
   kvOpen(i, card) {
     const D = this.kvData()[i], bx = document.getElementById('cvw-box'), w = document.getElementById('cvw'); if (!D || !bx || !w) return;
@@ -3824,7 +3919,7 @@ void main(){
   }
   vbTick(now) {
     this.vbRun(now, this._vbM || (this._vbM = { c: 'vb-c', g: 'vb-g', b: 'vb', k: '_vbGL', s: '_vbS', hx: 110, hy: 25, on: () => !!this.state.vt }));
-    const cf = this._nbC || (this._nbC = [0, 1, 2, 3].map((i) => ({ c: 'nb-c' + i, g: 'nb-g' + i, b: 'nb' + i, k: '_nbGL' + i, s: '_nbS' + i, hx: 100, hy: 22, touch: false, on: () => { if (this.state.vt) return false; const e = document.getElementById('nb' + i); if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight; } })));
+    const cf = this._nbC || (this._nbC = [0, 1, 2, 3].map((i) => ({ c: 'nb-c' + i, g: 'nb-g' + i, b: 'nb' + i, k: '_nbGL' + i, s: '_nbS' + i, hx: 100, hy: 22, ign: true, on: () => { if (this.state.vt || this._kv) return false; const gx = document.getElementById('pgx'); if (gx && gx.classList.contains('on')) return false; const e = document.getElementById('nb' + i); if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight; } })));
     cf.forEach((C) => this.vbRun(now, C));
   }
   vbRun(now, C) {
@@ -3834,7 +3929,7 @@ void main(){
     const W = Math.round(r.width), Hh = Math.round(r.height), SC = Math.min(2, window.devicePixelRatio || 1);
     if (cv.width !== Math.round(W * SC) || cv.height !== Math.round(Hh * SC)) { cv.width = Math.round(W * SC); cv.height = Math.round(Hh * SC); }
     const P = { cx: W / 2, cy: Hh / 2, hx: C.hx, hy: C.hy, r: C.hy };
-    const SENSE = 100, REACH = 52, RELEASE = 125, calm = this.reduce || this.state.still;
+    const SENSE = 100, REACH = 52, RELEASE = 125, calm = (C.ign ? false : this.reduce) || this.state.still;
     const S = this[C.s] || (this[C.s] = { ropes: [], last: now, grab: false, snapT: -1e9, spikes: [], ang: 0 });
     const dt = Math.min(0.033, Math.max(0.001, (now - S.last) / 1000)); S.last = now;
     // the cursor in stage coordinates, and the glove's fingers
@@ -4144,6 +4239,9 @@ void main(){
       ibLeave: () => { if (this.fine) this.ibSet(false, true); },
       ibTap: () => { if (!this.fine) this.ibSet(!this.state.ibOpen, true); },
       ibKey: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.ibSet(!this.state.ibOpen, true); } },
+      pgxOpen: (e) => { const c = e && e.currentTarget; this.pgxOpen((c && c.getAttribute('data-gate')) || 'es'); }, pgxClose: () => this.pgxClose(), pgxGo: () => this.pgxGo(),
+      pgxBack: (e) => { if (e && e.target && e.target.id === 'pgx') this.pgxClose(); },
+      pgxKey: (e) => { if (e && e.key === 'Enter') { e.preventDefault(); this.pgxGo(); } },
       cgOpen: (e) => { const c = e && e.currentTarget; if (c) this.kvOpen(parseInt(c.getAttribute('data-i'), 10) || 0, c); },
       kvClose: () => this.kvClose(), kvPrev: () => this.kvGo(-1), kvNext: () => this.kvGo(1),
       kvBack: (e) => { if (e && e.target && e.target.id === 'cvw') this.kvClose(); },
@@ -4363,38 +4461,42 @@ void main(){
       </div>
       <div class="cs" id="cs">
       <div class="cg" id="cs-stage">
-        <button class="cg-c cf-es rv d1" id="cs-p0" type="button" data-i="0" aria-haspopup="dialog" aria-label="Open the case: Enterprise Suite" onClick="{{cgOpen}}" data-cur="open">
+        <div class="cg-c cf-es rv d1" id="cs-p0" data-i="0">
           <img class="cg-img" alt="" hidden>
+          <button class="cg-hit" type="button" data-i="0" aria-haspopup="dialog" aria-label="Read the story: Enterprise Suite" onClick="{{cgOpen}}" data-cur="open"></button>
           <span class="cg-top"><i class="cf-logo" aria-hidden="true"></i><em>01 / 04</em></span>
           <span class="cg-fig"><span class="hl" data-hl="es">5 roles</span></span>
           <span class="cg-th">Five roles touch a deal before it becomes revenue. Our team worked on what they share.</span>
           <span class="cg-meta">Enterprise Suite · Deal to cash<br>Staff Product Designer · design direction</span>
-          <span class="cg-go" aria-hidden="true">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
-        </button>
-        <button class="cg-c cf-bs rv d2" id="cs-p1" type="button" data-i="1" aria-haspopup="dialog" aria-label="Open the case: Bills & Subscriptions" onClick="{{cgOpen}}" data-cur="open">
+          <span class="cg-ft"><button class="vb cs-nbtn" id="nb0" type="button" onClick="{{numEs}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c0" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g0" aria-hidden="true"></canvas></button><button class="cg-go" type="button" data-gate="es" onClick="{{pgxOpen}}" aria-haspopup="dialog" data-cur="open">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2"></rect><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"></path></svg></button></span>
+        </div>
+        <div class="cg-c cf-sa rv d2" id="cs-p2" data-i="2">
           <img class="cg-img" alt="" hidden>
+          <button class="cg-hit" type="button" data-i="2" aria-haspopup="dialog" aria-label="Read the story: Super App" onClick="{{cgOpen}}" data-cur="open"></button>
           <span class="cg-top"><i class="cf-logo" aria-hidden="true"></i><em>02 / 04</em></span>
-          <span class="cg-fig"><span class="hl" data-hl="bs">4 questions</span></span>
-          <span class="cg-th">Billing is where trust is earned or lost. The team set out to make the page explain itself.</span>
-          <span class="cg-meta">Intuit · Bills & Subscriptions<br>Staff Product Designer · FY26</span>
-          <span class="cg-go" aria-hidden="true">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
-        </button>
-        <button class="cg-c cf-sa rv d3" id="cs-p2" type="button" data-i="2" aria-haspopup="dialog" aria-label="Open the case: Super App" onClick="{{cgOpen}}" data-cur="open">
-          <img class="cg-img" alt="" hidden>
-          <span class="cg-top"><i class="cf-logo" aria-hidden="true"></i><em>03 / 04</em></span>
           <span class="cg-fig"><span class="hl" data-hl="sa">7 → 1</span></span>
           <span class="cg-th">Seven services sat behind one icon. With the team, we helped customers find them.</span>
           <span class="cg-meta">Amazon · Shopping app<br>UX Leader · 2022 to 2025</span>
-          <span class="cg-go" aria-hidden="true">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
-        </button>
-        <button class="cg-c cf-fr rv d3" id="cs-p3" type="button" data-i="3" aria-haspopup="dialog" aria-label="Open the case: Fresh" onClick="{{cgOpen}}" data-cur="open">
+          <span class="cg-ft"><button class="vb cs-nbtn" id="nb2" type="button" onClick="{{numSa}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c2" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g2" aria-hidden="true"></canvas></button><button class="cg-go" type="button" data-gate="sa" onClick="{{pgxOpen}}" aria-haspopup="dialog" data-cur="open">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2"></rect><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"></path></svg></button></span>
+        </div>
+        <div class="cg-c cf-bs rv d3" id="cs-p1" data-i="1">
           <img class="cg-img" alt="" hidden>
+          <button class="cg-hit" type="button" data-i="1" aria-haspopup="dialog" aria-label="Read the story: Bills & Subscriptions" onClick="{{cgOpen}}" data-cur="open"></button>
+          <span class="cg-top"><i class="cf-logo" aria-hidden="true"></i><em>03 / 04</em></span>
+          <span class="cg-fig"><span class="hl" data-hl="bs">4 questions</span></span>
+          <span class="cg-th">Billing is where trust is earned or lost. The team set out to make the page explain itself.</span>
+          <span class="cg-meta">Intuit · Bills & Subscriptions<br>Staff Product Designer · FY26</span>
+          <span class="cg-ft"><button class="vb cs-nbtn" id="nb1" type="button" onClick="{{numBs}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c1" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g1" aria-hidden="true"></canvas></button></span>
+        </div>
+        <div class="cg-c cf-fr rv d3" id="cs-p3" data-i="3">
+          <img class="cg-img" alt="" hidden>
+          <button class="cg-hit" type="button" data-i="3" aria-haspopup="dialog" aria-label="Read the story: Fresh" onClick="{{cgOpen}}" data-cur="open"></button>
           <span class="cg-top"><i class="cf-logo" aria-hidden="true"></i><em>04 / 04</em></span>
           <span class="cg-fig"><span class="hl" data-hl="fr">40→80%</span></span>
           <span class="cg-th">Customers had the value in hand. They just couldn’t see it.</span>
           <span class="cg-meta">Amazon India · Fresh<br>UX Leader · value perception</span>
-          <span class="cg-go" aria-hidden="true">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span>
-        </button>
+          <span class="cg-ft"><button class="vb cs-nbtn" id="nb3" type="button" onClick="{{numFr}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c3" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g3" aria-hidden="true"></canvas></button></span>
+        </div>
       </div>
     </div>
       <div class="cs-more">
@@ -4608,24 +4710,32 @@ void main(){
         <div class="cvw-ft">
             <div class="cvw-acts cs-acts" data-for="0" id="cs-acts0">
               <button class="cf-ask" onClick="{{askEs}}" data-cur="ask">Ask Nav</button>
-              <button class="vb cs-nbtn" id="nb0" type="button" onClick="{{numEs}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c0" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g0" aria-hidden="true"></canvas></button>
             </div>
             <div class="cvw-acts cs-acts" data-for="1" id="cs-acts1">
               <button class="cf-ask" onClick="{{askBs}}" data-cur="ask">Ask Nav</button>
-              <button class="vb cs-nbtn" id="nb1" type="button" onClick="{{numBs}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c1" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g1" aria-hidden="true"></canvas></button>
             </div>
             <div class="cvw-acts cs-acts" data-for="2" id="cs-acts2">
               <button class="cf-ask" onClick="{{askSa}}" data-cur="ask">Ask Nav</button>
-              <button class="vb cs-nbtn" id="nb2" type="button" onClick="{{numSa}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c2" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g2" aria-hidden="true"></canvas></button>
             </div>
             <div class="cvw-acts cs-acts" data-for="3" id="cs-acts3">
               <button class="cf-ask" onClick="{{askFr}}" data-cur="ask">Ask Nav</button>
-              <button class="vb cs-nbtn" id="nb3" type="button" onClick="{{numFr}}" data-cur="numbers" aria-label="See the real numbers"><canvas class="vb-c" id="nb-c3" aria-hidden="true"></canvas><span class="vb-t">See the real numbers</span><canvas class="vb-g" id="nb-g3" aria-hidden="true"></canvas></button>
             </div>
           <div class="cvw-nav"><button type="button" id="cvw-prev" onClick="{{kvPrev}}" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4 3 8l4 4"></path></svg></button><span class="cvw-n" id="cvw-n"></span><button type="button" id="cvw-next" onClick="{{kvNext}}" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></button></div>
         </div>
       </div>
       <button class="cvw-x" id="cvw-x" type="button" onClick="{{kvClose}}" aria-label="Close the case"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3 3 11"></path></svg></button>
+    </div>
+  </div>
+  <div class="pgx" id="pgx" role="dialog" aria-modal="true" aria-labelledby="pgx-h" aria-hidden="true" onClick="{{pgxBack}}">
+    <div class="pgx-box" id="pgx-box">
+      <button class="pgx-x" type="button" onClick="{{pgxClose}}" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3l8 8M11 3 3 11"></path></svg></button>
+      <span class="pgx-ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2"></rect><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"></path></svg></span>
+      <h3 class="pgx-h" id="pgx-h">This case is shared by password.</h3>
+      <p class="pgx-p">Enter the password to open the full case in Figma.</p>
+      <div class="pgx-f"><input class="pgx-in" id="pgx-in" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="Password" aria-label="Password" aria-describedby="pgx-msg" onKeyDown="{{pgxKey}}"><button class="pgx-go" id="pgx-go" type="button" onClick="{{pgxGo}}">Unlock</button></div>
+      <p class="pgx-msg" id="pgx-msg" role="status" aria-live="polite"></p>
+      <a class="pgx-open" id="pgx-open" target="_blank" rel="noopener noreferrer">Open the case <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"></path></svg></a>
+      <p class="pgx-help">No password? <a href="mailto:mpranav991@gmail.com">Email me</a> and I will send it.</p>
     </div>
   </div>
   <div class="lb" id="lb" aria-hidden="true" onClick="{{lbClose}}"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><p id="lb-c"></p></div>
